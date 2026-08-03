@@ -351,28 +351,33 @@ async function readFeed(){
   const t=await readTable(CFG.feed), C=t.cols;
   const cCo=C.find(c=>lc(c).includes('companyname'))||C.find(c=>lc(c).includes('company')),
         cU =C.find(c=>lc(c).includes('uma'))||C.find(c=>lc(c).includes('business unit'))||C.find(c=>/\bbu\b/.test(lc(c))),
-        cIO=C.find(c=>lc(c).includes('in / out')||lc(c).includes('in/out')||lc(c).includes('group set')||lc(c).includes('out of soc')),
-        cSoC=C.find(c=>lc(c).includes('gwp')&&lc(c).includes('soc')),
-        cTot=C.find(c=>c!==cSoC&&(lc(c).includes('gwp')||lc(c).includes('premium'))),
         cY =C.find(c=>lc(c).includes('calender')||lc(c).includes('calendar')||lc(c).includes('year')),
-        cV =cSoC||cTot||C.find(isNum),
-        cC =cCo||C.find(c=>c!==cU&&c!==cIO&&c!==cY&&!isNum(c));
-  const rows=t.rows.map(r=>({
+        cMN=C.find(c=>lc(c).includes('measure names')),
+        cMV=C.find(c=>lc(c).includes('measure values')),
+        cSoC=C.find(c=>lc(c).includes('gwp')&&lc(c).includes('soc')&&isNum(c)),
+        cTot=C.find(c=>c!==cSoC&&isNum(c)&&(lc(c).includes('gwp')||lc(c).includes('premium'))),
+        cV =cSoC||cTot||cMV||C.find(isNum),
+        cC =cCo||C.find(c=>c!==cU&&c!==cY&&c!==cMN&&!isNum(c));
+  // Long/crosstab layout (Measure Names on the sheet): keep only the SoC-measure rows,
+  // read the single Measure Values column. Wide layout: cSoC is its own column already.
+  let src=t.rows;
+  if(cMN && (!cSoC || cV===cMV))
+    src=t.rows.filter(r=>String(cell(r[cMN.i])).toLowerCase().includes('soc'));
+  // NOTE: no In/Out filter — [GWP_ZAR SoC] is already 0 for "Out", so summing every row
+  // gives the SoC book exactly. Filtering on the set was what collapsed the totals.
+  return src.map(r=>({
       c: cC?String(cell(r[cC.i])):'',
       u: cU?String(cell(r[cU.i])):'ALL',
-      io:cIO?cell(r[cIO.i]):'In',
       y: cY?Number(cell(r[cY.i])):null,
       v: Number(cell(r[cV.i]))/1e6 }))
-    .filter(r=>r.c&&r.c.toLowerCase()!=='null'&&r.y&&!isNaN(r.v));
-  // SoC book = "In" the SOC Group Set (GWP_ZAR SoC is 0 for Out anyway); drop empties
-  const inRows=cIO?rows.filter(r=>isIn(r.io)):rows;
-  return (inRows.length?inRows:rows).filter(r=>r.v>0).map(r=>({c:r.c,u:r.u,y:r.y,v:r.v})); }
+    .filter(r=>r.c&&r.c.toLowerCase()!=='null'&&r.y&&!isNaN(r.v)&&r.v>0); }
 /* EXT_Total_By_Year: UMA (group) | In/Out of SOC Group Set | Calenderyear | Gwp Zar (In+Out = whole book) */
 async function readTotals(){
   const t=await readTable(CFG.totals), C=t.cols;
   const cU=C.find(c=>lc(c).includes('uma'))||C.find(c=>lc(c).includes('business unit'))||C.find(c=>/\bbu\b/.test(lc(c))),
         cY=C.find(c=>lc(c).includes('calender')||lc(c).includes('calendar')||lc(c).includes('year')),
-        cG=C.find(c=>lc(c).includes('gwp')||lc(c).includes('premium'))||C.find(isNum);
+        cG=C.find(c=>isNum(c)&&(lc(c).includes('gwp')||lc(c).includes('premium')))||C.find(c=>lc(c).includes('measure values'))||C.find(isNum);
+  // In + Out summed = whole-industry book per UMA per year (denominator for SoC share)
   return t.rows.map(r=>({u:cU?String(cell(r[cU.i])):'ALL', y:cY?Number(cell(r[cY.i])):null, v:Number(cell(r[cG.i]))/1e6}))
     .filter(r=>r.y&&!isNaN(r.v)); }
 async function goLive(){
