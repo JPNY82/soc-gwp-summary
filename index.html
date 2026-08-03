@@ -338,7 +338,16 @@ $('btnApply').onclick=()=>{FILT.from=$('f_from').value;FILT.to=$('f_to').value;p
 function paint(){ render(computeBaked()); }
 
 /* live read (feeder sheets) */
-const cell=c=>(c.nativeValue!==undefined&&c.nativeValue!==null)?c.nativeValue:c.value;
+const cell=c=>(c&&c.nativeValue!==undefined&&c.nativeValue!==null)?c.nativeValue:(c?c.value:null);
+/* locale-safe number: prefer nativeValue; else parse SA-formatted text ("1 800 269", "0,54M") */
+function num(c){ let v=(c&&c.nativeValue!==undefined&&c.nativeValue!==null)?c.nativeValue:(c?c.value:null);
+  if(typeof v==='number') return v; if(v==null) return NaN;
+  let s=String(v).trim(); const tail=s.slice(-3).toLowerCase();
+  const mult=/m/.test(tail)?1e6:(/k/.test(tail)?1e3:(/bn|b/.test(tail)?1e9:1)); s=s.replace(/[^\d.,\-]/g,'');
+  if(s.includes(',')&&s.includes('.')) s=(s.lastIndexOf(',')>s.lastIndexOf('.'))?s.replace(/\./g,'').replace(',','.'):s.replace(/,/g,'');
+  else if(s.includes(',')) s=(/,\d{1,2}$/.test(s))?s.replace(',','.'):s.replace(/,/g,'');
+  const n=parseFloat(s); return isNaN(n)?NaN:n*mult; }
+let LAST_DIAG='';
 async function readTable(name){ const ws=DASH.worksheets.find(w=>w.name===name); if(!ws)throw new Error('missing worksheet: '+name);
   const sd=await ws.getSummaryDataAsync({maxRows:20000,ignoreSelection:true});
   return {cols:sd.columns.map(c=>({name:c.fieldName,i:c.index,type:c.dataType})), rows:sd.data}; }
@@ -349,41 +358,42 @@ const isIn=v=>/^in\b/i.test(String(v==null?'':v).trim());   // set membership: "
 /* EXT_SoC_Feed: Companyname | UMA (group) | In/Out of SOC Group Set | Calenderyear | GWP_ZAR SoC | Gwp Zar */
 async function readFeed(){
   const t=await readTable(CFG.feed), C=t.cols;
+  const sumCol=c=>{let s=0;for(const r of t.rows){const v=num(r[c.i]);if(!isNaN(v))s+=Math.abs(v);}return s;};
   const cCo=C.find(c=>lc(c).includes('companyname'))||C.find(c=>lc(c).includes('company')),
         cU =C.find(c=>lc(c).includes('uma'))||C.find(c=>lc(c).includes('business unit'))||C.find(c=>/\bbu\b/.test(lc(c))),
         cY =C.find(c=>lc(c).includes('calender')||lc(c).includes('calendar')||lc(c).includes('year')),
-        cMN=C.find(c=>lc(c).includes('measure names')),
-        cMV=C.find(c=>lc(c).includes('measure values')),
-        cSoC=C.find(c=>lc(c).includes('gwp')&&lc(c).includes('soc')&&isNum(c)),
-        cTot=C.find(c=>c!==cSoC&&isNum(c)&&(lc(c).includes('gwp')||lc(c).includes('premium'))),
-        cV =cSoC||cTot||cMV||C.find(isNum),
-        cC =cCo||C.find(c=>c!==cU&&c!==cY&&c!==cMN&&!isNum(c));
-  // Long/crosstab layout (Measure Names on the sheet): keep only the SoC-measure rows,
-  // read the single Measure Values column. Wide layout: cSoC is its own column already.
-  let src=t.rows;
-  if(cMN && (!cSoC || cV===cMV))
-    src=t.rows.filter(r=>String(cell(r[cMN.i])).toLowerCase().includes('soc'));
-  // NOTE: no In/Out filter — [GWP_ZAR SoC] is already 0 for "Out", so summing every row
-  // gives the SoC book exactly. Filtering on the set was what collapsed the totals.
-  return src.map(r=>({
-      c: cC?String(cell(r[cC.i])):'',
-      u: cU?String(cell(r[cU.i])):'ALL',
-      y: cY?Number(cell(r[cY.i])):null,
-      v: Number(cell(r[cV.i]))/1e6 }))
-    .filter(r=>r.c&&r.c.toLowerCase()!=='null'&&r.y&&!isNaN(r.v)&&r.v>0); }
+        cMN=C.find(c=>lc(c).includes('measure names'));
+  // pick the SoC-GWP measure: by name; else Measure Values; else the numeric column with the biggest total
+  let cSoC=C.find(c=>lc(c).includes('gwp')&&lc(c).includes('soc')&&isNum(c)), cV=cSoC, src=t.rows;
+  if(!cV && cMN){ const soc=t.rows.filter(r=>String(cell(r[cMN.i])).toLowerCase().includes('soc'));
+    if(soc.length) src=soc;
+    cV=C.find(c=>lc(c).includes('measure values')); }
+  if(!cV){ const cands=C.filter(c=>isNum(c)&&c!==cY); cands.sort((a,b)=>sumCol(b)-sumCol(a)); cV=cands[0]; }
+  const cC=cCo||C.filter(c=>!isNum(c)&&c!==cU&&c!==cY&&c!==cMN)[0]||C.find(c=>!isNum(c));
+  LAST_DIAG='rows='+t.rows.length+' | cols=['+C.map(c=>c.name+':'+c.type).join(' , ')+'] | measure='+(cV?cV.name:'NONE')+' year='+(cY?cY.name:'NONE')+' co='+(cC?cC.name:'NONE');
+  const all=src.map(r=>({ c:cC?String(cell(r[cC.i])):'', u:cU?String(cell(r[cU.i])):'ALL',
+      y:cY?parseInt(num(r[cY.i]),10):null, v:cV?num(r[cV.i])/1e6:NaN }))
+    .filter(r=>r.c&&r.c.toLowerCase()!=='null'&&r.y&&!isNaN(r.v));
+  const pos=all.filter(r=>r.v>0);           // SoC rows carry value; keep-all fallback if that empties
+  return pos.length?pos:all; }
 /* EXT_Total_By_Year: UMA (group) | In/Out of SOC Group Set | Calenderyear | Gwp Zar (In+Out = whole book) */
 async function readTotals(){
   const t=await readTable(CFG.totals), C=t.cols;
+  const sumCol=c=>{let s=0;for(const r of t.rows){const v=num(r[c.i]);if(!isNaN(v))s+=Math.abs(v);}return s;};
   const cU=C.find(c=>lc(c).includes('uma'))||C.find(c=>lc(c).includes('business unit'))||C.find(c=>/\bbu\b/.test(lc(c))),
         cY=C.find(c=>lc(c).includes('calender')||lc(c).includes('calendar')||lc(c).includes('year')),
-        cG=C.find(c=>isNum(c)&&(lc(c).includes('gwp')||lc(c).includes('premium')))||C.find(c=>lc(c).includes('measure values'))||C.find(isNum);
-  // In + Out summed = whole-industry book per UMA per year (denominator for SoC share)
-  return t.rows.map(r=>({u:cU?String(cell(r[cU.i])):'ALL', y:cY?Number(cell(r[cY.i])):null, v:Number(cell(r[cG.i]))/1e6}))
+        cMN=C.find(c=>lc(c).includes('measure names'));
+  let cG=C.find(c=>isNum(c)&&(lc(c).includes('gwp')||lc(c).includes('premium')));
+  if(!cG){ const cands=C.filter(c=>isNum(c)&&c!==cY); cands.sort((a,b)=>sumCol(b)-sumCol(a)); cG=cands[0]; }
+  // if the sheet carries the SoC measure too, drop those rows so we keep the plain whole-book total
+  let src=cMN? t.rows.filter(r=>!String(cell(r[cMN.i])).toLowerCase().includes('soc')) : t.rows;
+  if(!src.length) src=t.rows;
+  return src.map(r=>({u:cU?String(cell(r[cU.i])):'ALL', y:cY?parseInt(num(r[cY.i]),10):null, v:cG?num(r[cG.i])/1e6:NaN}))
     .filter(r=>r.y&&!isNaN(r.v)); }
 async function goLive(){
   try{
     const recs=await readFeed(); let tot=[]; try{tot=await readTotals();}catch(e){}
-    if(!recs.length) throw new Error('feed returned no rows');
+    if(!recs.length) throw new Error('0 usable rows — '+LAST_DIAG);
     CFG.baked.recs=recs; CFG.baked.tot=tot;
     CFG.baked.years=[...new Set(recs.map(r=>r.y))].sort((a,b)=>a-b).map(String);
     FEED_MODE=true; buildPanel(); paint(); setStatus('live from Tableau ✓',true);
