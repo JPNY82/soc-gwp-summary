@@ -12,20 +12,15 @@
   :root{
     --navy:#003078; --navy-2:#00214f; --navy-soft:#e7edf6;
     --yellow:#F0C018; --yellow-2:#d8a800;
-    --ink:#152238; --muted:#64748b; --line:#e2e8f0;
-    --bg:#eef2f7; --card:#ffffff;
-    --bar1:#003078; --bar2:#2e5aa0; --bar3:#6f92c7;
-    --up:#0a8a3f; --down:#b23a48;
+    --ink:#152238; --muted:#64748b; --line:#e2e8f0; --bg:#eef2f7; --card:#ffffff;
+    --bar1:#003078; --bar2:#2e5aa0; --bar3:#6f92c7; --up:#0a8a3f; --down:#b23a48;
     --page-w:297mm; --page-h:210mm;
   }
   *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--ink);
-    font-family:"Segoe UI",Arial,Helvetica,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  #bar{position:sticky;top:0;z-index:60;display:flex;gap:6px;align-items:center;
-    padding:8px 14px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #bar{position:sticky;top:0;z-index:60;display:flex;gap:6px;align-items:center;padding:8px 14px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap}
   .tabs{display:flex;gap:4px}
-  .tab{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:6px 6px 0 0;
-    padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
+  .tab{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:6px 6px 0 0;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
   .tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
   #bar .sp{flex:1}
   .btn{border:1px solid var(--navy);background:var(--navy);color:#fff;border-radius:6px;padding:7px 12px;font-size:12px;font-weight:600;cursor:pointer}
@@ -33,94 +28,107 @@
   .btn:hover{filter:brightness(1.03)}
   #status{font-size:12px;color:var(--muted);margin-left:4px}
   #diag{display:none;background:#fff8e6;color:#7a5b00;border-bottom:1px solid #f0dca0;padding:6px 14px;font-size:12px}
-  #panel{position:fixed;top:0;right:0;height:100%;width:330px;background:#fff;z-index:70;
-    box-shadow:-4px 0 20px rgba(0,0,0,.18);transform:translateX(100%);transition:transform .2s;display:flex;flex-direction:column;padding:16px}
+  #panel{position:fixed;top:0;right:0;height:100%;width:330px;background:#fff;z-index:70;box-shadow:-4px 0 20px rgba(0,0,0,.18);transform:translateX(100%);transition:transform .2s;display:flex;flex-direction:column;padding:16px}
   #panel.open{transform:none}
   #panel h3{margin:2px 0 4px;color:var(--navy);font-size:16px}
-  #panel .grp{margin-top:14px}
-  #panel .grp>label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  #panel .grp{margin-top:14px} #panel .grp>label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
   .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
   .chip{border:1px solid var(--line);border-radius:16px;padding:5px 11px;font-size:12px;cursor:pointer;user-select:none;background:#fff}
   .chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-  .yr{display:flex;gap:8px;align-items:center;margin-top:8px}
-  #panel select{flex:1;padding:7px;border:1px solid var(--line);border-radius:6px;font-size:13px}
+  .yr{display:flex;gap:8px;align-items:center;margin-top:8px} #panel select{flex:1;padding:7px;border:1px solid var(--line);border-radius:6px;font-size:13px}
   #panel .foot{margin-top:auto;display:flex;gap:8px}
-  .backdrop{position:fixed;inset:0;background:rgba(10,20,40,.25);z-index:65;display:none}
-  .backdrop.open{display:block}
-  .page{width:var(--page-w);min-height:var(--page-h);margin:16px auto;background:var(--card);
-    box-shadow:0 2px 14px rgba(0,0,0,.10);padding:12mm 14mm 10mm;display:none;flex-direction:column;position:relative}
+  .backdrop{position:fixed;inset:0;background:rgba(10,20,40,.25);z-index:65;display:none} .backdrop.open{display:block}
+  .page{width:var(--page-w);min-height:var(--page-h);margin:16px auto;background:var(--card);box-shadow:0 2px 14px rgba(0,0,0,.10);padding:8mm 7mm 7mm;display:none;flex-direction:column;position:relative}
   .page.active{display:flex}
   header.head{display:flex;align-items:flex-start;gap:14px;padding-bottom:8px}
   header.head img{height:44px;background:#fff;padding:2px 6px;border-radius:6px}
-  header.head .t{flex:1}
-  header.head h1{margin:0;font-size:21px;color:var(--navy);letter-spacing:.2px}
+  header.head .t{flex:1} header.head h1{margin:0;font-size:21px;color:var(--navy);letter-spacing:.2px}
   .titlecurve{display:block;width:230px;height:10px;margin:3px 0 1px}
   header.head .sub{font-size:12px;color:var(--muted)}
-  header.head .period{font-size:12px;font-weight:700;color:var(--navy-2);background:var(--yellow);padding:6px 12px;border-radius:20px;white-space:nowrap}
-  .brandbar{height:4px;background:linear-gradient(90deg,var(--navy) 0 70%,var(--yellow) 70% 100%);border-radius:3px;margin:6px 0 12px}
+  header.head .period{font-size:12px;font-weight:700;color:var(--navy);background:var(--navy-soft);padding:6px 12px;border-radius:20px;white-space:nowrap}
+  header.head .period:empty{display:none}
+  .brandbar{height:4px;background:var(--navy);border-radius:3px;margin:6px 0 12px}
   .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .kpi{background:linear-gradient(160deg,#ffffff,#eef3fa);border:1px solid var(--line);border-top:4px solid var(--navy);border-radius:10px;padding:12px 16px;position:relative}
-  .kpi::after{content:"";position:absolute;right:0;top:0;width:46px;height:4px;background:var(--yellow)}
+  .kpi{background:linear-gradient(160deg,#ffffff,#eef3fa);border:1px solid var(--line);border-left:6px solid var(--yellow);border-radius:10px;padding:12px 16px;position:relative}
   .kpi .lab{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
   .kpi .val{font-size:32px;font-weight:800;color:var(--navy);line-height:1.05;margin-top:5px}
   .kpi .note{font-size:11px;color:var(--muted);margin-top:3px}
-  .rowA{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  .rowA{display:grid;grid-template-columns:1.12fr 0.88fr;gap:12px;margin-top:12px;align-items:stretch}
+  .leftcol{display:flex;flex-direction:column;gap:12px;min-width:0}
   .panel-c{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;min-height:0}
-  .panel-c h3{margin:0 0 10px;font-size:13px;color:var(--navy);font-weight:700;display:flex;align-items:center;gap:8px}
+  .panel-c h3{margin:0 0 8px;font-size:13px;color:var(--navy);font-weight:700;display:flex;align-items:center;gap:8px}
   .panel-c h3::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--yellow)}
-  .bars{display:flex;flex-direction:column;gap:8px;flex:1;justify-content:center}
-  .barrow{display:grid;grid-template-columns:150px 1fr auto;align-items:center;gap:8px;font-size:12px}
-  .barrow .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .barrow .track{background:#eef2f7;border-radius:5px;height:16px;overflow:hidden}
-  .barrow .fill{height:100%;border-radius:5px;background:var(--bar1)}
-  .barrow .amt{font-weight:700;color:var(--navy);white-space:nowrap}
-  .delta{font-size:10px;font-weight:700;margin-left:4px}
-  .delta.up{color:var(--up)} .delta.down{color:var(--down)}
-  .trend{display:flex;align-items:flex-end;gap:10px;flex:1;padding-top:8px;min-height:120px}
+  /* stacked-by-year */
+  .stack{display:flex;flex-direction:column;flex:1;min-height:150px}
+  .slegend{display:flex;flex-wrap:wrap;gap:2px 12px;margin-bottom:8px;font-size:10px;color:var(--muted)}
+  .slegend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+  .scols{display:flex;align-items:flex-end;gap:12px;flex:1}
+  .scol{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;justify-content:flex-end}
+  .stot{font-size:10px;font-weight:700;color:var(--navy)}
+  .sbar{width:66%;min-height:2px;display:flex;flex-direction:column-reverse;border-radius:4px 4px 0 0;overflow:hidden}
+  .sbar>span{display:block;min-height:1px}
+  .syl{font-size:11px;color:var(--muted)}
+  /* year trend */
+  .trend{display:flex;align-items:flex-end;gap:10px;flex:1;padding-top:6px;min-height:120px}
   .trend .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;justify-content:flex-end}
-  .trend .tb{width:66%;background:linear-gradient(var(--bar2),var(--navy));border-radius:5px 5px 0 0;min-height:3px}
+  .trend .tb{width:64%;background:linear-gradient(var(--bar2),var(--navy));border-radius:5px 5px 0 0;min-height:3px}
   .trend .col.hl .tb{background:linear-gradient(var(--yellow),var(--yellow-2))}
   .trend .yl{font-size:11px;color:var(--muted)} .trend .vl{font-size:11px;font-weight:700;color:var(--navy)}
+  /* SoC share of GWP (% + amount, per year) */
+  .sharecols{display:flex;align-items:flex-end;gap:12px;flex:1;padding-top:4px;min-height:132px}
+  .scol2{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:flex-end}
+  .scol2 .pv{font-size:12px;font-weight:800;color:var(--navy)}
+  .scol2 .bar2{width:62%;min-height:4px;background:linear-gradient(var(--bar2),var(--navy));border-radius:5px 5px 0 0}
+  .scol2.hl .bar2{background:linear-gradient(var(--yellow),var(--yellow-2))}
+  .scol2 .amt{font-size:10px;font-weight:700;color:var(--muted)}
+  .scol2 .yl2{font-size:11px;color:var(--muted);margin-top:1px}
+  /* BU x year matrix (un-lumped) */
+  .mxwrap{flex:1;overflow:hidden}
+  table.mx{border-collapse:collapse;width:100%;font-size:11px;table-layout:fixed}
+  table.mx th{background:var(--navy);color:#fff;text-align:right;padding:5px 6px;font-weight:600}
+  table.mx th:first-child{text-align:left}
+  table.mx th .mru{font-weight:400;opacity:.75;font-size:9px;margin-left:3px}
+  table.mx td{border-bottom:1px solid var(--line);padding:4px 6px;text-align:right;color:var(--ink);white-space:nowrap}
+  table.mx th:first-child,table.mx td:first-child{width:30%}
+  table.mx td.mu{text-align:left;font-weight:600;color:var(--navy);white-space:normal;line-height:1.12}
+  table.mx td.mt{font-weight:700;color:var(--navy);border-left:1px solid var(--line)}
+  table.mx tr.mtot td{border-top:2px solid var(--navy);font-weight:800;color:var(--navy);background:#f2f6fc}
+  /* top list */
   .toppanel{margin-top:12px;flex:1}
   .toplist{columns:2;column-gap:26px}
-  .toprow{display:flex;align-items:center;gap:8px;font-size:12px;padding:3px 0;break-inside:avoid}
-  .toprow .rk{color:var(--muted);width:20px;text-align:right}
+  .toplist.single{columns:1}
+  .toprow{display:flex;align-items:center;gap:6px;font-size:12px;padding:3px 0;break-inside:avoid}
+  .toprow .rk{color:var(--muted);width:18px;text-align:right}
   .toprow .nm{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .toprow .vv{font-weight:700;color:var(--navy);white-space:nowrap}
-  .badge{font-size:9px;font-weight:800;border-radius:8px;padding:1px 6px;margin-left:4px}
+  .toprow .vv{font-weight:700;color:var(--navy);white-space:nowrap;width:56px;text-align:right}
+  .spark{display:inline-flex;align-items:flex-end;gap:1px;height:15px;width:38px}
+  .spark>span{flex:1;background:var(--bar3);border-radius:1px;min-height:1px}
+  .spark>span.last{background:var(--yellow-2)}
+  .badge{font-size:9px;font-weight:800;border-radius:8px;padding:1px 5px;margin-left:3px}
   .badge.spike{background:#dff3e6;color:var(--up)} .badge.drop{background:#fbe4e7;color:var(--down)} .badge.gap{background:#eef2f7;color:var(--muted)}
   footer.foot{margin-top:auto;border-top:1px solid var(--line);padding-top:6px;font-size:10px;color:var(--muted);display:flex;justify-content:space-between}
-  /* detail tables */
   .tablewrap{margin-top:8px;overflow:auto;flex:1}
-  table.dt{border-collapse:collapse;width:100%;font-size:11px}
-  table.dt th{background:var(--navy);color:#fff;text-align:left;padding:6px 8px;position:sticky;top:0}
-  table.dt td{border-bottom:1px solid var(--line);padding:4px 8px}
-  table.dt tr:nth-child(even) td{background:#f7f9fc}
+  table.dt{border-collapse:collapse;width:100%;font-size:11px} table.dt th{background:var(--navy);color:#fff;text-align:left;padding:6px 8px;position:sticky;top:0}
+  table.dt td{border-bottom:1px solid var(--line);padding:4px 8px} table.dt tr:nth-child(even) td{background:#f7f9fc}
   .note-live{color:var(--muted);font-size:12px;padding:20px;text-align:center}
-  /* insights */
   .insights h2{color:var(--navy);font-size:16px;margin:12px 0 6px}
   .lead{font-size:13px;line-height:1.5;margin:0 0 10px}
   .ins-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .ins-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--yellow);border-radius:8px;padding:9px 13px}
-  .ins-card h4{margin:0 0 5px;color:var(--navy);font-size:13px}
-  .ins-card p{font-size:12px;line-height:1.4;margin:2px 0}
-  .movers{margin-top:10px}
-  .mv{display:flex;align-items:center;gap:8px;font-size:12px;padding:3px 0}
+  .ins-card h4{margin:0 0 5px;color:var(--navy);font-size:13px} .ins-card p{font-size:12px;line-height:1.4;margin:2px 0}
+  .movers{margin-top:10px} .mv{display:flex;align-items:center;gap:8px;font-size:12px;padding:3px 0}
   .mv .tag{font-size:9px;font-weight:800;border-radius:8px;padding:1px 7px}
-  .defs{margin-top:auto;font-size:11px;color:var(--muted);line-height:1.5;border-top:1px dashed var(--line);padding-top:8px}
-  .defs b{color:var(--ink)}
+  .defs{margin-top:auto;font-size:11px;color:var(--muted);line-height:1.5;border-top:1px dashed var(--line);padding-top:8px} .defs b{color:var(--ink)}
   .filttag{display:inline-block;font-size:10px;background:var(--navy-soft);color:var(--navy);border-radius:10px;padding:2px 8px;margin-left:6px}
   @page{size:A4 landscape;margin:0}
   @media print{ #bar,#diag,#panel,.backdrop{display:none!important} body{background:#fff}
-    .page{display:flex!important;box-shadow:none;margin:0;page-break-after:always;break-after:page}
-    .page:last-of-type{page-break-after:auto} }
+    .page{display:flex!important;box-shadow:none;margin:0;page-break-after:always;break-after:page} .page:last-of-type{page-break-after:auto} }
 </style>
 </head>
 <body>
 <div id="bar">
   <div class="tabs" id="tabs"></div>
-  <span id="status">initialising…</span>
-  <span class="sp"></span>
+  <span id="status">initialising…</span><span class="sp"></span>
   <button class="btn gear" id="btnSet">⚙ Filters</button>
   <button class="btn sec" onclick="window.print()">Print all</button>
   <button class="btn sec" id="btnPdf">PDF</button>
@@ -131,92 +139,84 @@
 <div class="backdrop" id="backdrop"></div>
 <aside id="panel">
   <h3>Filters</h3>
-  <div style="font-size:12px;color:var(--muted)">Applied to the live worksheets in Tableau.</div>
+  <div style="font-size:12px;color:var(--muted)">Slices the data already loaded — instant, no reload.</div>
   <div class="grp"><label>Business unit</label><div class="chips" id="f_uma"></div></div>
-  <div class="grp"><label>Year range</label>
-    <div class="yr"><select id="f_from"></select><span style="color:var(--muted)">to</span><select id="f_to"></select></div>
-  </div>
+  <div class="grp"><label>Year range</label><div class="yr"><select id="f_from"></select><span style="color:var(--muted)">to</span><select id="f_to"></select></div></div>
   <div class="foot"><button class="btn sec" id="btnClear" style="flex:1">Clear</button><button class="btn" id="btnApply" style="flex:1">Apply</button></div>
 </aside>
 
 <!-- SUMMARY -->
-<section class="page active" id="pg_summary" data-tab="Summary">
-  <header class="head"><img class="logo" alt="Santam"/>
+<section class="page active" id="pg_summary">
+  <header class="head"><img class="logo" alt="Santam Specialist"/>
     <div class="t"><h1>State-owned Companies (SoC) — GWP Summary</h1>
       <svg class="titlecurve" viewBox="0 0 240 12" preserveAspectRatio="none"><path d="M3 8 Q 120 -3 237 6" fill="none" stroke="#F0C018" stroke-width="4" stroke-linecap="round"/></svg>
-      <div class="sub">Santam Specialist Business · Industry GWP · State-owned Companies segment<span class="filttag tag"></span></div></div>
-    <div class="period">2026 YTD</div></header>
+      <div class="sub">Santam Specialist Business · GWP · State-owned Companies segment<span class="filttag tag"></span></div></div>
+    <div class="period"></div></header>
   <div class="brandbar"></div>
   <div class="kpis">
-    <div class="kpi"><div class="lab">SoC GWP</div><div class="val" id="k_fig">—</div><div class="note">Gross written premium from SoCs</div></div>
+    <div class="kpi"><div class="lab">SoC GWP</div><div class="val" id="k_fig">—</div><div class="note" id="k_fig_n">Gross written premium from SoCs</div></div>
     <div class="kpi"><div class="lab">SoC share of total</div><div class="val" id="k_pct">—</div><div class="note">of all industry GWP</div></div>
     <div class="kpi"><div class="lab">Number of SoCs</div><div class="val" id="k_cnt">—</div><div class="note">distinct SoCs with GWP</div></div>
   </div>
   <div class="rowA">
-    <div class="panel-c"><h3>SoC GWP by business unit</h3><div class="bars" id="p_uma"></div></div>
-    <div class="panel-c"><h3>SoC share of GWP — by year</h3><div class="trend" id="p_trend"></div></div>
+    <div class="leftcol">
+      <div class="panel-c"><h3>SoC share of GWP <span style="font-weight:400;color:var(--muted);font-size:11px">(% of total GWP · SoC amount below)</span></h3><div class="stack" id="p_share"></div></div>
+      <div class="panel-c"><h3>GWP by business unit — per year</h3><div class="mxwrap" id="p_umayear"></div></div>
+    </div>
+    <div class="panel-c toppanel"><h3>Top 20 SoCs by GWP <span style="font-weight:400;color:var(--muted);font-size:11px">(sparkline = GWP by year · ▲ spike ▼ drop – no latest)</span></h3>
+      <div class="toplist single" id="p_top"></div></div>
   </div>
-  <div class="panel-c toppanel"><h3>Top SoCs by GWP <span style="font-weight:400;color:var(--muted);font-size:11px">(▲ spike · ▼ drop · – no 2026)</span></h3>
-    <div class="toplist" id="p_top"></div></div>
   <footer class="foot"><span>Source: SoEs Industry GWPs · Santam Specialist Business</span><span class="fp">2026 YTD (Jan–Jul)</span></footer>
 </section>
 
 <!-- DETAILS -->
-<section class="page" id="pg_details" data-tab="Details">
-  <header class="head"><img class="logo" alt="Santam"/>
-    <div class="t"><h1>SoC GWP — Details</h1>
-      <svg class="titlecurve" viewBox="0 0 240 12" preserveAspectRatio="none"><path d="M3 8 Q 120 -3 237 6" fill="none" stroke="#F0C018" stroke-width="4" stroke-linecap="round"/></svg>
-      <div class="sub">Line-item SoC detail<span class="filttag tag"></span></div></div>
-    <div class="period">2026 YTD</div></header>
+<section class="page" id="pg_details">
+  <header class="head"><img class="logo" alt="Santam Specialist"/>
+    <div class="t"><h1>SoC GWP — Details</h1><svg class="titlecurve" viewBox="0 0 240 12" preserveAspectRatio="none"><path d="M3 8 Q 120 -3 237 6" fill="none" stroke="#F0C018" stroke-width="4" stroke-linecap="round"/></svg>
+      <div class="sub">Line-item SoC detail<span class="filttag tag"></span></div></div><div class="period">2026 YTD</div></header>
   <div class="brandbar"></div>
   <div class="tablewrap" id="tbl_details"><div class="note-live">Loads live inside Tableau from “SoCs Details (3)”.</div></div>
   <footer class="foot"><span>Santam Specialist Business · SoEs Industry GWPs</span><span class="fp"></span></footer>
 </section>
 
 <!-- DETAILS SORTED -->
-<section class="page" id="pg_sorted" data-tab="Details (sorted)">
-  <header class="head"><img class="logo" alt="Santam"/>
-    <div class="t"><h1>SoC GWP — Details (sorted)</h1>
-      <svg class="titlecurve" viewBox="0 0 240 12" preserveAspectRatio="none"><path d="M3 8 Q 120 -3 237 6" fill="none" stroke="#F0C018" stroke-width="4" stroke-linecap="round"/></svg>
-      <div class="sub">Line-item SoC detail, sorted<span class="filttag tag"></span></div></div>
-    <div class="period">2026 YTD</div></header>
+<section class="page" id="pg_sorted">
+  <header class="head"><img class="logo" alt="Santam Specialist"/>
+    <div class="t"><h1>SoC GWP — Details (sorted)</h1><svg class="titlecurve" viewBox="0 0 240 12" preserveAspectRatio="none"><path d="M3 8 Q 120 -3 237 6" fill="none" stroke="#F0C018" stroke-width="4" stroke-linecap="round"/></svg>
+      <div class="sub">Line-item SoC detail, sorted<span class="filttag tag"></span></div></div><div class="period">2026 YTD</div></header>
   <div class="brandbar"></div>
   <div class="tablewrap" id="tbl_sorted"><div class="note-live">Loads live inside Tableau from “SoCs Details with sorting (2)”.</div></div>
   <footer class="foot"><span>Santam Specialist Business · SoEs Industry GWPs</span><span class="fp"></span></footer>
 </section>
 
 <!-- INSIGHTS -->
-<section class="page insights" id="pg_insights" data-tab="Insights">
-  <header class="head"><img class="logo" alt="Santam"/>
-    <div class="t"><h1>SoC GWP — Insights</h1>
-      <svg class="titlecurve" viewBox="0 0 240 12" preserveAspectRatio="none"><path d="M3 8 Q 120 -3 237 6" fill="none" stroke="#F0C018" stroke-width="4" stroke-linecap="round"/></svg>
-      <div class="sub">What the numbers say · trends by SoC<span class="filttag tag"></span></div></div>
-    <div class="period">2026 YTD</div></header>
+<section class="page insights" id="pg_insights">
+  <header class="head"><img class="logo" alt="Santam Specialist"/>
+    <div class="t"><h1>SoC GWP — Insights</h1><svg class="titlecurve" viewBox="0 0 240 12" preserveAspectRatio="none"><path d="M3 8 Q 120 -3 237 6" fill="none" stroke="#F0C018" stroke-width="4" stroke-linecap="round"/></svg>
+      <div class="sub">What the numbers say · trends by SoC<span class="filttag tag"></span></div></div><div class="period">2026 YTD</div></header>
   <div class="brandbar"></div>
   <p class="lead" id="ins_lead">—</p>
   <div class="ins-grid" id="ins_cards"></div>
-  <h2>Notable movements</h2>
-  <div class="movers" id="ins_movers"></div>
-  <div class="defs">
-    <b>SoC</b> — State-owned Company (SOC Group set). <b>GWP</b> — Gross Written Premium (ZAR).
-    <b>YTD</b> — 2026 covers Jan–Jul; ▲ spike = 2026 YTD already above full-year 2025, ▼ drop = fell sharply vs earlier years, – = no 2026 GWP yet.
-    <b>Business units</b> — Marine, Guarantees, SRE, CP, Corporate Property, Construction &amp; Engineering, CAHM, Aviation.
-  </div>
+  <h2>Notable movements</h2><div class="movers" id="ins_movers"></div>
+  <div class="defs"><b>SoC</b> — State-owned Company. <b>GWP</b> — Gross Written Premium (ZAR). <b>YTD</b> — 2026 covers Jan–Jul, so full-year comparisons are part-year.
+    <b>Business units</b> — Marine, Guarantees, SRE, CP, Corporate Property, Construction &amp; Engineering, CAHM, Aviation.</div>
   <footer class="foot"><span>Santam Specialist Business · SoEs Industry GWPs</span><span class="fp"></span></footer>
 </section>
 
 <script>
-const LOGO="data:image/png;base64,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"; const CFG={"title": "State-owned Companies (SoC) — GWP Summary", "period": "2026 YTD · Jan–Jul", "sheets": {"socFigure": "2024 SOC Figure", "socPct": "2024 SOC As Percentage", "socCount": "2024 No. of SOC (2)", "trend": "Other Years SOC As Percentage ", "byUma": "UMAs GWPs", "topSoc": "Top 10 SoC GWPs"}, "fallback": {"soc_gwp_m": 0, "soc_pct": 0, "n_soc": 0, "byUma": [], "topSoc": [], "trend": []}, "years": ["2022", "2023", "2024", "2025", "2026"], "detailSheets": {"details": "SoCs Details (3)", "sorted": "SoCs Details with sorting (2)"}, "baked": {"recs": [{"c": "Mhlathuze Water", "u": "ERT_AFRICA", "y": 2023, "v": 3.444}, {"c": "Institute of People Management (IPM)", "u": "SHA", "y": 2026, "v": 0.0}, {"c": "National Credit Regulator (NCR)", "u": "SHA", "y": 2022, "v": 0.356}, {"c": "Council for Geoscience", "u": "AVIATION", "y": 2023, "v": 0.417}, {"c": "National Home Builders Registration Council (N", "u": "SHA", "y": 2025, "v": 0.0}, {"c": "Rand Water", "u": "ERT_AFRICA", "y": 2026, "v": 2.695}, {"c": "Technology Innovation Agency", "u": "SHA", "y": 2025, "v": 0.0}, {"c": "Council for Geoscience", "u": "AVIATION", "y": 2022, "v": 0.867}, {"c": "Rand Water", "u": "SHA", "y": 2026, "v": 0.341}, {"c": "Institute of People Management (IPM)", "u": "SHA", "y": 2023, "v": 0.0}, {"c": "Rand Water", "u": "SHA", "y": 2024, "v": 1.725}, {"c": "National Credit Regulator (NCR)", "u": "SHA", "y": 2023, "v": 0.0}, {"c": "Government Employees Medical Scheme (GEMS)", "u": "SHA", "y": 2025, "v": 2.541}, {"c": "Legal Aid South Africa", "u": "SHA", "y": 2025, "v": 0.0}, {"c": "Government Employees Medical Scheme (GEMS)", "u": "SHA", "y": 2024, "v": 2.365}, {"c": "MINTEK (COUNCIL FOR MINERAL TECHNOLOGY)", "u": "ERT_AFRICA", "y": 2024, "v": 2.841}, {"c": "MINTEK (COUNCIL FOR MINERAL TECHNOLOGY)", "u": "ERT_AFRICA", "y": 2022, "v": 1.894}, {"c": "Export Credit Insurance Corporation of South A", "u": "SHA", "y": 2022, "v": 0.767}, {"c": "Legal Aid South Africa", "u": "SHA", "y": 2024, "v": 0.291}, {"c": "Technology Innovation Agency", "u": "SHA", "y": 2023, "v": 0.162}, {"c": "Technology Innovation Agency", "u": "SHA", "y": 2024, "v": 0.0}, {"c": "Legal Aid South Africa", "u": "SHA", "y": 2023, "v": 0.024}, {"c": "National Home Builders Registration Council (N", "u": "SHA", "y": 2026, "v": 0.0}, {"c": "Export Credit Insurance Corporation of South A", "u": "SHA", "y": 2023, "v": 0.257}, {"c": "MINTEK (COUNCIL FOR MINERAL TECHNOLOGY)", "u": "ERT_AFRICA", "y": 2023, "v": 1.9}, {"c": "Rand Water", "u": "ERT_AFRICA", "y": 2025, "v": 3.408}, {"c": "Export Credit Insurance Corporation of South A", "u": "SHA", "y": 2025, "v": 0.622}, {"c": "National Home Builders Registration Council (N", "u": "SHA", "y": 2024, "v": 0.375}, {"c": "Export Credit Insurance Corporation of South A", "u": "SHA", "y": 2026, "v": 0.451}, {"c": "National Home Builders Registration Council (N", "u": "SHA", "y": 2022, "v": 0.121}, {"c": "Government Employees Medical Scheme (GEMS)", "u": "SHA", "y": 2022, "v": 2.43}, {"c": "South African Civil Aviation Authority", "u": "SHA", "y": 2025, "v": 0.332}, {"c": "Mhlathuze Water", "u": "ERT_AFRICA", "y": 2022, "v": 3.641}, {"c": "Rand Water", "u": "ERT_AFRICA", "y": 2022, "v": 1.73}, {"c": "South African Civil Aviation Authority", "u": "SHA", "y": 2024, "v": 0.074}, {"c": "National Home Builders Registration Council (N", "u": "SHA", "y": 2023, "v": 0.473}, {"c": "Legal Aid South Africa", "u": "SHA", "y": 2022, "v": 0.1}, {"c": "South African Civil Aviation Authority", "u": "SHA", "y": 2026, "v": 0.217}, {"c": "Human Sciences Research Council (HSRC)", "u": "SHA", "y": 2023, "v": 1.911}, {"c": "Export Credit Insurance Corporation of South A", "u": "SHA", "y": 2024, "v": 0.453}, {"c": "Council for Geoscience", "u": "AVIATION", "y": 2024, "v": 0.266}, {"c": "Rand Water", "u": "ERT_AFRICA", "y": 2023, "v": 1.67}, {"c": "Rand Water", "u": "SHA", "y": 2025, "v": 0.819}, {"c": "Institute of People Management (IPM)", "u": "SHA", "y": 2022, "v": 0.11}, {"c": "Government Employees Medical Scheme (GEMS)", "u": "SHA", "y": 2023, "v": 0.493}, {"c": "MINTEK (COUNCIL FOR MINERAL TECHNOLOGY)", "u": "ERT_AFRICA", "y": 2025, "v": 1.028}, {"c": "Institute of People Management (IPM)", "u": "SHA", "y": 2025, "v": 0.056}, {"c": "Human Sciences Research Council (HSRC)", "u": "SHA", "y": 2022, "v": 0.45}, {"c": "Legal Aid South Africa", "u": "SHA", "y": 2026, "v": 5.798}, {"c": "Rand Water", "u": "ERT_AFRICA", "y": 2024, "v": 6.592}, {"c": "Institute of People Management (IPM)", "u": "SHA", "y": 2024, "v": 0.233}, {"c": "Rand Water", "u": "SHA", "y": 2023, "v": 1.062}, {"c": "Technology Innovation Agency", "u": "SHA", "y": 2022, "v": 0.188}], "tot": [{"u": "SHA", "y": 2024, "v": 1084.7}, {"u": "SHA", "y": 2023, "v": 1444.7}, {"u": "SHA", "y": 2022, "v": 1398.0}, {"u": "SHA", "y": 2026, "v": 1186.0}, {"u": "MIRABILIS", "y": 2025, "v": 1294.8}, {"u": "AVIATION", "y": 2022, "v": 155.2}, {"u": "CSURE", "y": 2024, "v": 217.2}, {"u": "MIRABILIS", "y": 2024, "v": 787.6}, {"u": "AMUA", "y": 2023, "v": 841.9}, {"u": "AVIATION", "y": 2024, "v": 246.0}, {"u": "SHA", "y": 2025, "v": 1265.5}, {"u": "MIRABILIS", "y": 2022, "v": 817.4}, {"u": "AMUA", "y": 2024, "v": 754.0}, {"u": "AMUA", "y": 2025, "v": 512.7}, {"u": "CBG", "y": 2025, "v": 3.8}, {"u": "CSURE", "y": 2022, "v": 239.1}, {"u": "MIRABILIS", "y": 2026, "v": 708.4}, {"u": "ERT_AFRICA", "y": 2022, "v": 3202.1}, {"u": "AMUA", "y": 2022, "v": 336.2}, {"u": "MIRABILIS", "y": 2023, "v": 775.5}, {"u": "AVIATION", "y": 2026, "v": 71.8}, {"u": "AVIATION", "y": 2025, "v": 254.5}, {"u": "CSURE", "y": 2023, "v": 276.9}, {"u": "AVIATION", "y": 2023, "v": 249.5}, {"u": "CBG", "y": 2022, "v": 37.4}, {"u": "CSURE", "y": 2025, "v": 109.4}, {"u": "AMUA", "y": 2026, "v": 462.7}, {"u": "CBG", "y": 2026, "v": 3.6}, {"u": "ERT_AFRICA", "y": 2025, "v": 2215.1}, {"u": "CBG", "y": 2023, "v": 26.8}, {"u": "ERT_AFRICA", "y": 2026, "v": 1410.6}, {"u": "ERT", "y": 2025, "v": 0.0}, {"u": "ERT_AFRICA", "y": 2023, "v": 3627.2}, {"u": "ERT_AFRICA", "y": 2024, "v": 2345.6}, {"u": "CBG", "y": 2024, "v": 12.2}, {"u": "ERT", "y": 2023, "v": 2.8}, {"u": "ERT", "y": 2024, "v": 0.7}, {"u": "ERT", "y": 2022, "v": 0.0}, {"u": "ERT", "y": 2026, "v": 0.0}], "years": ["2022", "2023", "2024", "2025", "2026"]}, "_note": "DECOY sample data for public hosting. Live figures load from Tableau worksheets."};
+const LOGO="data:image/png;base64,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"; const CFG={"title": "State-owned Companies (SoC) — GWP Summary", "period": "2026 YTD · Jan–Jul", "fallback": {"soc_gwp_m": 7.4, "soc_pct": 0.2, "n_soc": 10, "total_gwp_m": 3922.3, "trend": [{"y": "2022", "v": 0.1}, {"y": "2023", "v": 0.1}, {"y": "2024", "v": 0.1}, {"y": "2025", "v": 0.1}, {"y": "2026", "v": 0.2}], "byUma": [{"k": "ERT_AFRICA", "v": 3.56, "prev": 5.15}, {"k": "SHA", "v": 3.81, "prev": 2.94}], "topSoc": [{"k": "RAND WATER", "v": 3.56, "series": [2.57, 1.04, 3.38, 4.53, 3.56], "flag": null, "note": null}, {"k": "Legal Aid South Africa", "v": 3.0, "series": [0.07, 0.07, 0.07, 0.08, 3.0], "flag": "spike", "note": "2026 YTD (3.0m) already above full-year 2025 (0.1m)"}, {"k": "Export Credit Insurance Corporation of South A", "v": 0.32, "series": [0.66, 0.53, 0.63, 0.32, 0.32], "flag": null, "note": null}, {"k": "Rand Water", "v": 0.26, "series": [0.0, 0.66, 0.94, 0.0, 0.26], "flag": "drop", "note": "fell from ~R0.9m to R0.0m by 2025"}, {"k": "South African Civil Aviation Authority", "v": 0.13, "series": [0.0, 0.0, 0.13, 0.1, 0.13], "flag": "spike", "note": "2026 YTD (0.1m) already above full-year 2025 (0.1m)"}, {"k": "National Home Builders Registration Council (N", "v": 0.1, "series": [0.14, 0.15, 0.15, 0.16, 0.1], "flag": null, "note": null}, {"k": "Institute of People Management (IPM)", "v": 0.0, "series": [0.0, 0.0, 0.0, 0.0, 0.0], "flag": null, "note": null}, {"k": "MINTEK (COUNCIL FOR MINERAL TECHNOLOGY)", "v": 0.0, "series": [1.25, 1.39, 1.62, 1.51, 0.0], "flag": "gap", "note": "no 2026 GWP yet (was R1.6m)"}, {"k": "Government Employees Medical Scheme (GEMS)", "v": 0.0, "series": [1.19, 1.24, 1.32, 1.38, 0.0], "flag": "gap", "note": "no 2026 GWP yet (was R1.4m)"}, {"k": "MHLATHUZE WATER", "v": 0.0, "series": [2.03, 2.67, 0.0, 0.0, 0.0], "flag": "drop", "note": "fell from ~R2.7m to R0.0m by 2025"}, {"k": "Human Sciences Research Council (HSRC)", "v": 0.0, "series": [0.85, 1.04, 0.0, 0.0, 0.0], "flag": "drop", "note": "fell from ~R1.0m to R0.0m by 2025"}, {"k": "Council for Geoscience", "v": 0.0, "series": [0.54, 0.32, 0.25, 0.0, 0.0], "flag": "drop", "note": "fell from ~R0.5m to R0.0m by 2025"}, {"k": "National Credit Regulator (NCR)", "v": 0.0, "series": [0.1, 0.1, 0.0, 0.0, 0.0], "flag": "drop", "note": "fell from ~R0.1m to R0.0m by 2025"}, {"k": "Technology Innovation Agency", "v": 0.0, "series": [0.0, 0.01, 0.01, 0.01, 0.0], "flag": "gap", "note": "no 2026 GWP yet (was R0.0m)"}, {"k": "Robben Island Museum", "v": 0.0, "series": [0.0, 0.0, 0.0, 0.0, 0.0], "flag": null, "note": null}, {"k": "South African National Accreditation System", "v": 0.0, "series": [0.0, 0.0, 0.0, 0.0, 0.0], "flag": null, "note": null}, {"k": "Independent Development Trust", "v": 0.0, "series": [0.0, 0.0, 0.0, 0.0, 0.0], "flag": null, "note": null}, {"k": "Mhlathuze Water", "v": 0.0, "series": [0.0, 0.0, 0.0, 0.0, 0.0], "flag": null, "note": null}]}, "years": ["2022", "2023", "2024", "2025", "2026"], "detailSheets": {"details": "SoCs Details (3)", "sorted": "SoCs Details with sorting (2)"}, "baked": {"recs": [{"c": "South African Nuclear Energy Corporation SOC L", "u": "SHA", "y": 2026, "v": 2.706}, {"c": "Denel (Pty) Ltd", "u": "SHA", "y": 2023, "v": 0.165}, {"c": "Transnet (Ltd)", "u": "MIRABILIS", "y": 2025, "v": 5.273}, {"c": "South African National Parks (SANParks)", "u": "AVIATION", "y": 2024, "v": 2.045}, {"c": "Eskom", "u": "SHA", "y": 2025, "v": 10.796}, {"c": "Public Investment Corporation (PIC)", "u": "SHA", "y": 2023, "v": 22.575}, {"c": "South African Nuclear Energy Corporation SOC L", "u": "SHA", "y": 2023, "v": 2.168}, {"c": "Denel (Pty) Ltd", "u": "SHA", "y": 2026, "v": 0.165}, {"c": "Eskom", "u": "SHA", "y": 2024, "v": 10.706}, {"c": "Denel (Pty) Ltd", "u": "SHA", "y": 2022, "v": 0.147}, {"c": "South African National Parks (SANParks)", "u": "AVIATION", "y": 2025, "v": 2.055}, {"c": "Industrial Development Corporation [Ltd] (IDC)", "u": "SHA", "y": 2025, "v": 8.543}, {"c": "South African Reserve Bank (SARB)", "u": "SHA", "y": 2022, "v": 5.203}, {"c": "Ithala Development Finance Corporation (Ltd)", "u": "SHA", "y": 2022, "v": 1.433}, {"c": "PetroSA (Pty) Ltd", "u": "ERT_AFRICA", "y": 2024, "v": 0.583}, {"c": "Broadband Infraco", "u": "SHA", "y": 2023, "v": 0.035}, {"c": "Transnet (Ltd)", "u": "ERT_AFRICA", "y": 2024, "v": 208.8}, {"c": "South African Weather Service (SAWS)", "u": "SHA", "y": 2026, "v": 1.364}, {"c": "Eskom", "u": "ERT_AFRICA", "y": 2022, "v": 296.035}, {"c": "Transnet (Ltd)", "u": "SHA", "y": 2023, "v": 6.445}, {"c": "Transnet (Ltd)", "u": "SHA", "y": 2026, "v": 15.897}, {"c": "South African National Parks (SANParks)", "u": "AVIATION", "y": 2022, "v": 2.566}, {"c": "Eskom", "u": "SHA", "y": 2023, "v": 18.672}, {"c": "Denel (Pty) Ltd", "u": "SHA", "y": 2025, "v": 0.261}, {"c": "South African National Parks (SANParks)", "u": "SHA", "y": 2022, "v": 0.814}, {"c": "Financial Sector Conduct Authority (FSCA)", "u": "SHA", "y": 2025, "v": 0.711}, {"c": "Industrial Development Corporation [Ltd] (IDC)", "u": "ERT_AFRICA", "y": 2023, "v": 1.533}, {"c": "Transnet (Ltd)", "u": "MIRABILIS", "y": 2023, "v": 3.119}, {"c": "South African Reserve Bank (SARB)", "u": "SHA", "y": 2026, "v": 6.276}, {"c": "Human Sciences Research Council (HSRC)", "u": "MIRABILIS", "y": 2022, "v": 0.045}, {"c": "Agricultural Research Council (ARC)", "u": "SHA", "y": 2024, "v": 0.609}, {"c": "South African Nuclear Energy Corporation SOC L", "u": "AMUA", "y": 2026, "v": 0.553}, {"c": "Health Professions Council of South Africa (HP", "u": "SHA", "y": 2025, "v": 0.268}, {"c": "National Empowerment Fund", "u": "SHA", "y": 2025, "v": 0.193}, {"c": "Eskom", "u": "ERT_AFRICA", "y": 2023, "v": 429.273}, {"c": "Armaments Corporation of South Africa (ARMSCOR", "u": "ERT_AFRICA", "y": 2024, "v": 4.482}, {"c": "Rand Water", "u": "SHA", "y": 2024, "v": 2.418}, {"c": "Armaments Corporation of South Africa (ARMSCOR", "u": "SHA", "y": 2024, "v": 3.142}, {"c": "South African Weather Service (SAWS)", "u": "SHA", "y": 2025, "v": 0.859}, {"c": "Armaments Corporation of South Africa (ARMSCOR", "u": "SHA", "y": 2022, "v": 2.629}, {"c": "Eskom", "u": "ERT_AFRICA", "y": 2025, "v": 332.904}, {"c": "Rand Water", "u": "SHA", "y": 2026, "v": 2.446}, {"c": "Industrial Development Corporation [Ltd] (IDC)", "u": "SHA", "y": 2022, "v": 8.254}, {"c": "Ithala Development Finance Corporation (Ltd)", "u": "SHA", "y": 2025, "v": 1.937}, {"c": "South African Reserve Bank (SARB)", "u": "SHA", "y": 2025, "v": 6.832}, {"c": "Rand Water", "u": "ERT_AFRICA", "y": 2026, "v": 3.561}, {"c": "Eskom", "u": "CBG", "y": 2023, "v": 0.754}, {"c": "Road Accident Fund (RAF)", "u": "SHA", "y": 2026, "v": 0.049}, {"c": "State Information Technology Agency (SITA)", "u": "SHA", "y": 2022, "v": 0.077}, {"c": "Airports Company South Africa (ACSA)", "u": "SHA", "y": 2022, "v": 0.112}, {"c": "South African Bureau of Standards (SABS)", "u": "SHA", "y": 2025, "v": 0.027}, {"c": "South African Nuclear Energy Corporation SOC L", "u": "SHA", "y": 2024, "v": 2.232}, {"c": "South African Post Office (SAPO)", "u": "SHA", "y": 2023, "v": 3.614}, {"c": "South African Reserve Bank (SARB)", "u": "ERT_AFRICA", "y": 2023, "v": 2.957}, {"c": "Eskom", "u": "CBG", "y": 2022, "v": 1.331}, {"c": "South African Post Office (SAPO)", "u": "SHA", "y": 2024, "v": 2.979}, {"c": "Transnet (Ltd)", "u": "ERT_AFRICA", "y": 2022, "v": 114.04}, {"c": "South African Reserve Bank (SARB)", "u": "MIRABILIS", "y": 2025, "v": 2.782}, {"c": "Rand Water", "u": "SHA", "y": 2022, "v": 3.411}, {"c": "South African Post Office (SAPO)", "u": "AMUA", "y": 2022, "v": 1.359}, {"c": "Eskom", "u": "SHA", "y": 2026, "v": 15.13}, {"c": "Eskom", "u": "CBG", "y": 2025, "v": 0.009}, {"c": "Special Investigating Unit (SIU)", "u": "SHA", "y": 2024, "v": 1.122}, {"c": "South African National Parks (SANParks)", "u": "SHA", "y": 2024, "v": 0.673}, {"c": "Financial Sector Conduct Authority (FSCA)", "u": "SHA", "y": 2023, "v": 1.552}, {"c": "Government Employees Pension Fund (GEPF)", "u": "ERT_AFRICA", "y": 2023, "v": 8.736}, {"c": "South African National Road Agency", "u": "SHA", "y": 2023, "v": 0.248}, {"c": "National Housing Finance Corporation (NHFC)", "u": "SHA", "y": 2022, "v": 1.104}, {"c": "PetroSA (Pty) Ltd", "u": "SHA", "y": 2024, "v": 2.782}, {"c": "South African Reserve Bank (SARB)", "u": "MIRABILIS", "y": 2026, "v": 0.714}, {"c": "Mintek (Council for Mineral Technology)", "u": "ERT_AFRICA", "y": 2024, "v": 1.616}, {"c": "Mintek (Council for Mineral Technology)", "u": "SHA", "y": 2025, "v": 0.775}, {"c": "Mintek (Council for Mineral Technology)", "u": "ERT_AFRICA", "y": 2022, "v": 1.254}, {"c": "Passenger Rail Agency of South African (PRASA)", "u": "ERT_AFRICA", "y": 2024, "v": 117.45}, {"c": "South African Reserve Bank (SARB)", "u": "ERT_AFRICA", "y": 2022, "v": 2.67}, {"c": "South African Reserve Bank (SARB)", "u": "SHA", "y": 2024, "v": 5.992}, {"c": "South African Nuclear Energy Corporation SOC L", "u": "SHA", "y": 2025, "v": 2.35}, {"c": "South African Nuclear Energy Corporation SOC L", "u": "AMUA", "y": 2025, "v": 0.601}, {"c": "Industrial Development Corporation [Ltd] (IDC)", "u": "ERT_AFRICA", "y": 2022, "v": 1.476}, {"c": "South African Special Risk Insurance Associati", "u": "SHA", "y": 2023, "v": 0.525}, {"c": "Passenger Rail Agency of South African (PRASA)", "u": "ERT_AFRICA", "y": 2026, "v": 49.435}, {"c": "Telkom SA (Ltd)", "u": "SHA", "y": 2024, "v": 3.622}, {"c": "South African Forestry Company (Ltd) (SAFCOL)", "u": "SHA", "y": 2022, "v": 1.246}, {"c": "South African Post Office (SAPO)", "u": "SHA", "y": 2025, "v": 2.541}, {"c": "Transnet (Ltd)", "u": "CBG", "y": 2022, "v": 0.049}, {"c": "Public Investment Corporation (PIC)", "u": "SHA", "y": 2022, "v": 21.348}, {"c": "South African Reserve Bank (SARB)", "u": "SHA", "y": 2023, "v": 5.747}, {"c": "National Housing Finance Corporation (NHFC)", "u": "SHA", "y": 2024, "v": 0.608}, {"c": "PetroSA (Pty) Ltd", "u": "SHA", "y": 2022, "v": 2.506}, {"c": "Financial Sector Conduct Authority (FSCA)", "u": "SHA", "y": 2026, "v": 0.026}, {"c": "Armaments Corporation of South Africa (ARMSCOR", "u": "SHA", "y": 2025, "v": 3.569}, {"c": "South African Post Office (SAPO)", "u": "ERT_AFRICA", "y": 2023, "v": 1.973}, {"c": "South African Bureau of Standards (SABS)", "u": "SHA", "y": 2022, "v": 1.489}, {"c": "Telkom SA (Ltd)", "u": "SHA", "y": 2026, "v": 0.384}, {"c": "Armaments Corporation of South Africa (ARMSCOR", "u": "ERT_AFRICA", "y": 2025, "v": 4.857}, {"c": "Transnet (Ltd)", "u": "AVIATION", "y": 2024, "v": 0.481}, {"c": "South African National Road Agency", "u": "SHA", "y": 2026, "v": 0.015}, {"c": "Transnet (Ltd)", "u": "MIRABILIS", "y": 2022, "v": 3.728}, {"c": "Transnet (Ltd)", "u": "AVIATION", "y": 2022, "v": 0.299}, {"c": "National Housing Finance Corporation (NHFC)", "u": "SHA", "y": 2023, "v": 1.159}, {"c": "South African Post Office (SAPO)", "u": "ERT_AFRICA", "y": 2025, "v": 2.178}, {"c": "South African Post Office (SAPO)", "u": "SHA", "y": 2022, "v": 9.003}, {"c": "Government Employees Pension Fund (GEPF)", "u": "ERT_AFRICA", "y": 2022, "v": 5.172}, {"c": "Rand Water", "u": "ERT_AFRICA", "y": 2025, "v": 3.645}, {"c": "Ithala Development Finance Corporation (Ltd)", "u": "SHA", "y": 2024, "v": 2.245}, {"c": "Telkom SA (Ltd)", "u": "SHA", "y": 2022, "v": 3.387}, {"c": "Health Professions Council of South Africa (HP", "u": "SHA", "y": 2026, "v": 0.295}, {"c": "PetroSA (Pty) Ltd", "u": "ERT_AFRICA", "y": 2026, "v": 0.772}, {"c": "Small Enterprise Finance Agency (SEFA)", "u": "SHA", "y": 2022, "v": 2.197}, {"c": "Mintek (Council for Mineral Technology)", "u": "SHA", "y": 2024, "v": 0.766}, {"c": "Agricultural Research Council (ARC)", "u": "SHA", "y": 2025, "v": 0.839}, {"c": "South African Post Office (SAPO)", "u": "ERT_AFRICA", "y": 2024, "v": 1.938}, {"c": "Transnet (Ltd)", "u": "ERT_AFRICA", "y": 2023, "v": 163.65}, {"c": "Armaments Corporation of South Africa (ARMSCOR", "u": "ERT_AFRICA", "y": 2026, "v": 5.027}, {"c": "Telkom SA (Ltd)", "u": "SHA", "y": 2025, "v": 3.406}, {"c": "Armaments Corporation of South Africa (ARMSCOR", "u": "SHA", "y": 2026, "v": 3.664}, {"c": "Special Investigating Unit (SIU)", "u": "SHA", "y": 2022, "v": 0.554}, {"c": "South African Reserve Bank (SARB)", "u": "MIRABILIS", "y": 2023, "v": 0.756}, {"c": "Mintek (Council for Mineral Technology)", "u": "ERT_AFRICA", "y": 2023, "v": 1.39}, {"c": "Transnet (Ltd)", "u": "SHA", "y": 2022, "v": 6.874}, {"c": "South African Nuclear Energy Corporation SOC L", "u": "SHA", "y": 2022, "v": 2.057}, {"c": "Transnet (Ltd)", "u": "AVIATION", "y": 2023, "v": 0.504}, {"c": "Transnet (Ltd)", "u": "MIRABILIS", "y": 2026, "v": 8.718}, {"c": "Health Professions Council of South Africa (HP", "u": "SHA", "y": 2024, "v": 0.195}, {"c": "Rand Water", "u": "SHA", "y": 2025, "v": 3.947}, {"c": "Agricultural Research Council (ARC)", "u": "SHA", "y": 2022, "v": 0.527}, {"c": "Mintek (Council for Mineral Technology)", "u": "AMUA", "y": 2024, "v": 0.027}, {"c": "Mintek (Council for Mineral Technology)", "u": "SHA", "y": 2022, "v": 0.42}, {"c": "Passenger Rail Agency of South African (PRASA)", "u": "ERT_AFRICA", "y": 2022, "v": 397.891}, {"c": "South African National Parks (SANParks)", "u": "ERT_AFRICA", "y": 2024, "v": 27.063}, {"c": "Industrial Development Corporation [Ltd] (IDC)", "u": "ERT_AFRICA", "y": 2025, "v": 1.626}, {"c": "Eskom", "u": "ERT_AFRICA", "y": 2024, "v": 390.0}, {"c": "Telkom SA (Ltd)", "u": "ERT_AFRICA", "y": 2026, "v": 3.882}, {"c": "Rand Water", "u": "SHA", "y": 2023, "v": 2.143}, {"c": "Health Professions Council of South Africa (HP", "u": "SHA", "y": 2022, "v": 0.195}, {"c": "South African Qualifications Authority (SAQA)", "u": "SHA", "y": 2024, "v": 0.07}, {"c": "South African National Road Agency", "u": "SHA", "y": 2024, "v": 0.178}, {"c": "Transnet (Ltd)", "u": "AVIATION", "y": 2026, "v": 0.544}, {"c": "Passenger Rail Agency of South African (PRASA)", "u": "ERT_AFRICA", "y": 2025, "v": 84.487}, {"c": "Government Employees Pension Fund (GEPF)", "u": "ERT_AFRICA", "y": 2026, "v": 0.81}, {"c": "South African Reserve Bank (SARB)", "u": "ERT_AFRICA", "y": 2024, "v": 5.288}, {"c": "Rand Water", "u": "ERT_AFRICA", "y": 2022, "v": 2.57}, {"c": "Government Employees Pension Fund (GEPF)", "u": "ERT_AFRICA", "y": 2025, "v": 9.755}, {"c": "South African Civil Aviation Authority", "u": "SHA", "y": 2024, "v": 0.13}, {"c": "Transnet (Ltd)", "u": "MIRABILIS", "y": 2024, "v": 3.985}, {"c": "Transnet (Ltd)", "u": "ERT_AFRICA", "y": 2026, "v": 26.125}, {"c": "South African Weather Service (SAWS)", "u": "SHA", "y": 2024, "v": 0.621}, {"c": "Armaments Corporation of South Africa (ARMSCOR", "u": "SHA", "y": 2023, "v": 2.929}, {"c": "Agricultural Research Council (ARC)", "u": "SHA", "y": 2026, "v": 0.525}, {"c": "Transnet (Ltd)", "u": "AVIATION", "y": 2025, "v": 0.526}, {"c": "South African Post Office (SAPO)", "u": "AMUA", "y": 2026, "v": 0.368}, {"c": "South African National Parks (SANParks)", "u": "ERT_AFRICA", "y": 2023, "v": 24.595}, {"c": "Human Sciences Research Council (HSRC)", "u": "SHA", "y": 2023, "v": 1.036}, {"c": "Telkom SA (Ltd)", "u": "SHA", "y": 2023, "v": 4.578}, {"c": "Industrial Development Corporation [Ltd] (IDC)", "u": "ERT_AFRICA", "y": 2026, "v": 1.425}, {"c": "South African Post Office (SAPO)", "u": "ERT_AFRICA", "y": 2022, "v": 2.964}, {"c": "Public Investment Corporation (PIC)", "u": "CBG", "y": 2022, "v": 0.029}, {"c": "Small Enterprise Finance Agency (SEFA)", "u": "SHA", "y": 2024, "v": 2.42}, {"c": "Ithala Development Finance Corporation (Ltd)", "u": "SHA", "y": 2026, "v": 1.423}, {"c": "Financial Sector Conduct Authority (FSCA)", "u": "SHA", "y": 2022, "v": 1.144}, {"c": "South African National Parks (SANParks)", "u": "SHA", "y": 2025, "v": 0.669}, {"c": "South African Special Risk Insurance Associati", "u": "SHA", "y": 2024, "v": 0.551}, {"c": "National Housing Finance Corporation (NHFC)", "u": "SHA", "y": 2026, "v": 1.2}, {"c": "Denel (Pty) Ltd", "u": "MIRABILIS", "y": 2025, "v": 0.285}, {"c": "Rand Water", "u": "ERT_AFRICA", "y": 2023, "v": 1.043}, {"c": "South African Special Risk Insurance Associati", "u": "SHA", "y": 2022, "v": 0.5}, {"c": "Airports Company South Africa (ACSA)", "u": "SHA", "y": 2023, "v": 0.175}, {"c": "South African Civil Aviation Authority", "u": "SHA", "y": 2025, "v": 0.098}, {"c": "Government Employees Pension Fund (GEPF)", "u": "ERT_AFRICA", "y": 2024, "v": 8.12}, {"c": "South African Reserve Bank (SARB)", "u": "ERT_AFRICA", "y": 2026, "v": 5.481}, {"c": "South African National Road Agency", "u": "SHA", "y": 2025, "v": 0.179}, {"c": "Ithala Development Finance Corporation (Ltd)", "u": "SHA", "y": 2023, "v": 1.75}, {"c": "Transnet (Ltd)", "u": "CBG", "y": 2023, "v": 0.036}, {"c": "Transnet (Ltd)", "u": "SHA", "y": 2024, "v": 6.778}, {"c": "Armaments Corporation of South Africa (ARMSCOR", "u": "ERT_AFRICA", "y": 2023, "v": 3.826}, {"c": "Broadband Infraco", "u": "SHA", "y": 2022, "v": 0.143}, {"c": "Mintek (Council for Mineral Technology)", "u": "AMUA", "y": 2023, "v": 0.029}, {"c": "Armaments Corporation of South Africa (ARMSCOR", "u": "ERT_AFRICA", "y": 2022, "v": 3.514}, {"c": "Public Investment Corporation (PIC)", "u": "SHA", "y": 2024, "v": 0.882}, {"c": "Government Employees Pension Fund (GEPF)", "u": "MIRABILIS", "y": 2022, "v": 0.087}, {"c": "Health Professions Council of South Africa (HP", "u": "SHA", "y": 2023, "v": 0.195}, {"c": "Mintek (Council for Mineral Technology)", "u": "SHA", "y": 2023, "v": 0.514}, {"c": "South African National Parks (SANParks)", "u": "ERT_AFRICA", "y": 2022, "v": 20.058}, {"c": "Health and Welfare Sector Education and Traini", "u": "SHA", "y": 2026, "v": 0.07}, {"c": "South African Nuclear Energy Corporation SOC L", "u": "AMUA", "y": 2023, "v": 0.639}, {"c": "Mintek (Council for Mineral Technology)", "u": "AMUA", "y": 2022, "v": 0.058}, {"c": "Transnet (Ltd)", "u": "SHA", "y": 2025, "v": 10.216}, {"c": "South African Bureau of Standards (SABS)", "u": "SHA", "y": 2023, "v": 1.386}, {"c": "Industrial Development Corporation [Ltd] (IDC)", "u": "SHA", "y": 2023, "v": 8.821}, {"c": "South African Reserve Bank (SARB)", "u": "ERT_AFRICA", "y": 2025, "v": 4.574}, {"c": "South African Civil Aviation Authority", "u": "SHA", "y": 2026, "v": 0.13}, {"c": "South African National Road Agency", "u": "CBG", "y": 2023, "v": 0.018}, {"c": "Denel (Pty) Ltd", "u": "SHA", "y": 2024, "v": 0.223}, {"c": "Eskom", "u": "SHA", "y": 2022, "v": 9.215}, {"c": "South African National Parks (SANParks)", "u": "AVIATION", "y": 2023, "v": 1.994}, {"c": "Financial Sector Conduct Authority (FSCA)", "u": "SHA", "y": 2024, "v": 0.94}, {"c": "South African National Parks (SANParks)", "u": "SHA", "y": 2023, "v": 1.197}, {"c": "South African Reserve Bank (SARB)", "u": "MIRABILIS", "y": 2022, "v": 0.042}, {"c": "Small Enterprise Finance Agency (SEFA)", "u": "SHA", "y": 2025, "v": 0.134}, {"c": "Human Sciences Research Council (HSRC)", "u": "SHA", "y": 2022, "v": 0.85}, {"c": "South African National Parks (SANParks)", "u": "ERT_AFRICA", "y": 2025, "v": 32.689}, {"c": "National Empowerment Fund", "u": "SHA", "y": 2022, "v": 0.169}, {"c": "South African Special Risk Insurance Associati", "u": "SHA", "y": 2026, "v": 0.395}, {"c": "Industrial Development Corporation [Ltd] (IDC)", "u": "SHA", "y": 2026, "v": 1.632}, {"c": "Small Enterprise Finance Agency (SEFA)", "u": "SHA", "y": 2023, "v": 2.382}, {"c": "Agricultural Research Council (ARC)", "u": "SHA", "y": 2023, "v": 0.546}, {"c": "South African National Parks (SANParks)", "u": "AVIATION", "y": 2026, "v": 0.077}, {"c": "PetroSA (Pty) Ltd", "u": "SHA", "y": 2023, "v": 2.077}, {"c": "National Housing Finance Corporation (NHFC)", "u": "SHA", "y": 2025, "v": 0.619}, {"c": "Mintek (Council for Mineral Technology)", "u": "ERT_AFRICA", "y": 2025, "v": 1.509}, {"c": "Telkom SA (Ltd)", "u": "ERT_AFRICA", "y": 2025, "v": 5.875}, {"c": "National Empowerment Fund", "u": "SHA", "y": 2024, "v": 0.193}, {"c": "PetroSA (Pty) Ltd", "u": "ERT_AFRICA", "y": 2025, "v": 0.799}, {"c": "Industrial Development Corporation [Ltd] (IDC)", "u": "SHA", "y": 2024, "v": 6.782}, {"c": "South African Bureau of Standards (SABS)", "u": "SHA", "y": 2024, "v": 1.598}, {"c": "South African Nuclear Energy Corporation SOC L", "u": "AMUA", "y": 2022, "v": 0.502}, {"c": "Mintek (Council for Mineral Technology)", "u": "AMUA", "y": 2025, "v": 0.014}, {"c": "National Empowerment Fund", "u": "SHA", "y": 2023, "v": 0.181}, {"c": "South African Nuclear Energy Corporation SOC L", "u": "AMUA", "y": 2024, "v": 0.594}, {"c": "Special Investigating Unit (SIU)", "u": "SHA", "y": 2023, "v": 1.03}, {"c": "Telkom SA (Ltd)", "u": "ERT_AFRICA", "y": 2024, "v": 5.996}, {"c": "Eskom", "u": "ERT_AFRICA", "y": 2026, "v": 313.643}, {"c": "South African Special Risk Insurance Associati", "u": "SHA", "y": 2025, "v": 0.136}, {"c": "Rand Water", "u": "ERT_AFRICA", "y": 2024, "v": 3.38}, {"c": "Industrial Development Corporation [Ltd] (IDC)", "u": "ERT_AFRICA", "y": 2024, "v": 1.64}], "tot": [{"u": "SHA", "y": 2024, "v": 1414.36}, {"u": "SHA", "y": 2023, "v": 1503.58}, {"u": "SHA", "y": 2022, "v": 1437.93}, {"u": "SHA", "y": 2026, "v": 932.18}, {"u": "MIRABILIS", "y": 2025, "v": 1056.54}, {"u": "AVIATION", "y": 2022, "v": 180.91}, {"u": "CSURE", "y": 2024, "v": 217.16}, {"u": "MIRABILIS", "y": 2024, "v": 975.76}, {"u": "AMUA", "y": 2023, "v": 674.82}, {"u": "AVIATION", "y": 2024, "v": 201.27}, {"u": "SHA", "y": 2025, "v": 1439.55}, {"u": "MIRABILIS", "y": 2022, "v": 754.53}, {"u": "AMUA", "y": 2024, "v": 707.72}, {"u": "AMUA", "y": 2025, "v": 647.56}, {"u": "CBG", "y": 2025, "v": 3.29}, {"u": "CSURE", "y": 2022, "v": 233.55}, {"u": "MIRABILIS", "y": 2026, "v": 606.93}, {"u": "ERT_AFRICA", "y": 2022, "v": 3144.85}, {"u": "AMUA", "y": 2022, "v": 480.12}, {"u": "MIRABILIS", "y": 2023, "v": 867.02}, {"u": "AVIATION", "y": 2026, "v": 100.94}, {"u": "AVIATION", "y": 2025, "v": 202.36}, {"u": "CSURE", "y": 2023, "v": 225.62}, {"u": "AVIATION", "y": 2023, "v": 208.11}, {"u": "CBG", "y": 2022, "v": 42.32}, {"u": "CSURE", "y": 2025, "v": 148.87}, {"u": "AMUA", "y": 2026, "v": 377.15}, {"u": "CBG", "y": 2026, "v": 2.81}, {"u": "ERT_AFRICA", "y": 2025, "v": 2948.04}, {"u": "CBG", "y": 2023, "v": 27.04}, {"u": "ERT_AFRICA", "y": 2026, "v": 1902.29}, {"u": "ERT", "y": 2025, "v": 0.0}, {"u": "ERT_AFRICA", "y": 2023, "v": 3128.23}, {"u": "ERT_AFRICA", "y": 2024, "v": 3018.66}, {"u": "CBG", "y": 2024, "v": 12.37}, {"u": "ERT", "y": 2023, "v": 2.76}, {"u": "ERT", "y": 2024, "v": 0.79}, {"u": "ERT", "y": 2022, "v": 0.0}, {"u": "ERT", "y": 2026, "v": 0.0}], "years": ["2022", "2023", "2024", "2025", "2026"]}, "feed": "EXT_SoC_Feed", "totals": "EXT_Total_By_Year"};
 const UMA_ALIAS={AMUA:"Marine",CBG:"Guarantees",CSURE:"SRE",ERT:"CP",ERT_AFRICA:"Corporate Property",MIRABILIS:"Construction & Engineering",SHA:"CAHM",AVIATION:"Aviation"};
-const alias=u=>UMA_ALIAS[String(u).toUpperCase().replace(/ /g,'_')]||u;
-const $=id=>document.getElementById(id);
-const $$=s=>Array.from(document.querySelectorAll(s));
+const norm=u=>String(u).toUpperCase().replace(/ /g,'_');
+const ACRO=new Set(['CAHM','SRE','CP','SOC','SOE','BU','SA','NPA','SHA','UMA','GWP']);
+function alias(u){ const k=norm(u); if(UMA_ALIAS[k]) return UMA_ALIAS[k];
+  return String(u).replace(/_/g,' ').trim().split(/\s+/).map(w=>ACRO.has(w.toUpperCase())?w.toUpperCase():(w.charAt(0).toUpperCase()+w.slice(1).toLowerCase())).join(' ')||u; }
+const $=id=>document.getElementById(id); const $$=s=>Array.from(document.querySelectorAll(s));
 document.querySelectorAll('.logo').forEach(i=>i.src=LOGO);
-document.querySelectorAll('.period,.fp').forEach(e=>e.textContent=CFG.period);
+document.querySelectorAll('.period,.fp').forEach(e=>e.textContent='');
+const PAL=['#003078','#2e5aa0','#6f92c7','#F0C018','#2C4A52','#9db4d6','#b8970a','#c9d6e8'];
+let FILT={uma:new Set(), from:null, to:null}; let LIVE=false, DASH=null, FEED_MODE=false;
 
-let FILT={uma:new Set(), from:null, to:null};
-const fmtR=m=>{ if(m==null||isNaN(m))return'—';
-  if(Math.abs(m)>=1000)return'R '+(m/1000).toLocaleString(undefined,{maximumFractionDigits:2})+' bn';
+const fmtR=m=>{ if(m==null||isNaN(m))return'—'; if(Math.abs(m)>=1000)return'R '+(m/1000).toLocaleString(undefined,{maximumFractionDigits:2})+' bn';
   return'R '+m.toLocaleString(undefined,{maximumFractionDigits:1})+' m';};
 function setStatus(t,live){$('status').textContent=t;$('status').style.color=live?'#003078':'#64748b';}
 function showDiag(m){const d=$('diag');d.style.display='block';d.textContent=m;}
@@ -224,189 +224,213 @@ function showDiag(m){const d=$('diag');d.style.display='block';d.textContent=m;}
 /* tabs */
 const PAGES=[['Summary','pg_summary'],['Details','pg_details'],['Details (sorted)','pg_sorted'],['Insights','pg_insights']];
 $('tabs').innerHTML=PAGES.map((p,i)=>`<div class="tab${i==0?' active':''}" data-pg="${p[1]}">${p[0]}</div>`).join('');
-$$('.tab').forEach(t=>t.onclick=()=>{
-  $$('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
+$$('.tab').forEach(t=>t.onclick=()=>{ $$('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
   $$('.page').forEach(pg=>pg.classList.remove('active'));$(t.dataset.pg).classList.add('active');
-  if(t.dataset.pg==='pg_details') loadDetail('details','tbl_details');
-  if(t.dataset.pg==='pg_sorted') loadDetail('sorted','tbl_sorted');
-});
+  if(t.dataset.pg==='pg_details')loadDetail('details','tbl_details');
+  if(t.dataset.pg==='pg_sorted')loadDetail('sorted','tbl_sorted'); });
 
-function bars(elId,rows,color){const el=$(elId);el.innerHTML='';
-  if(!rows||!rows.length){el.innerHTML='<div style="color:#9aa;font-size:12px">No data for this selection</div>';return;}
-  const max=Math.max(...rows.map(r=>Math.abs(r.v)))||1;
-  rows.forEach((r,i)=>{const row=document.createElement('div');row.className='barrow';
-    const w=Math.max(2,Math.abs(r.v)/max*100);const c=color||['var(--bar1)','var(--bar2)','var(--bar3)'][i%3];
-    let d=''; if(r.prev!=null&&r.prev>0){const g=(r.v-r.prev)/r.prev*100;d=`<span class="delta ${g>=0?'up':'down'}">${g>=0?'▲':'▼'}${Math.abs(g).toFixed(0)}%</span>`;}
-    row.innerHTML=`<div class="name" title="${r.k}">${r.k}${d}</div><div class="track"><div class="fill" style="width:${w}%;background:${c}"></div></div><div class="amt">${fmtR(r.v)}</div>`;
-    el.appendChild(row);});}
-function trend(rows){const el=$('p_trend');el.innerHTML='';
-  if(!rows||!rows.length){el.innerHTML='<div style="color:#9aa;font-size:12px">No data</div>';return;}
-  const max=Math.max(...rows.map(r=>r.v))||1;
-  rows.forEach((r,i)=>{const col=document.createElement('div');col.className='col'+(i===rows.length-1?' hl':'');const h=Math.max(3,r.v/max*120);
-    col.innerHTML=`<div class="vl">${r.v.toLocaleString(undefined,{maximumFractionDigits:1})}%</div><div class="tb" style="height:${h}px"></div><div class="yl">${r.y}</div>`;
-    el.appendChild(col);});}
-function topList(rows){const el=$('p_top');el.innerHTML='';
-  rows.slice(0,20).forEach((r,i)=>{const b=r.flag?`<span class="badge ${r.flag}">${r.flag==='spike'?'▲':r.flag==='drop'?'▼':'–'}</span>`:'';
-    const div=document.createElement('div');div.className='toprow';
-    div.innerHTML=`<span class="rk">${i+1}</span><span class="nm" title="${r.k}">${r.k}${b}</span><span class="vv">${fmtR(r.v)}</span>`;el.appendChild(div);});}
-
-/* ---- baked analytics (filter-aware, from embedded per-SoC data) ---- */
+/* ---- analytics from recs (baked=sample, or live feed) ---- */
 function activeYears(){ const ys=(CFG.baked.years||[]).map(Number);
-  if(!FILT.from&&!FILT.to) return ys;
-  const a=Number(FILT.from||ys[0]), b=Number(FILT.to||ys[ys.length-1]);
+  if(!FILT.from&&!FILT.to) return ys; const a=Number(FILT.from||ys[0]), b=Number(FILT.to||ys[ys.length-1]);
   return ys.filter(y=>y>=Math.min(a,b)&&y<=Math.max(a,b)); }
-function umaOk(u){ return !FILT.uma.size || FILT.uma.has(String(u).toUpperCase().replace(/ /g,'_')); }
-function socSeries(co,yrs){ const rs=CFG.baked.recs.filter(r=>r.c===co&&umaOk(r.u));
-  return yrs.map(y=>rs.filter(r=>r.y===y).reduce((s,r)=>s+r.v,0)); }
-function flagOf(s,yrs){ const last=s[s.length-1], prev=s[s.length-2]||0, early=Math.max(0,...s.slice(0,-1));
-  if(prev>0 && last>=prev*1.1 && last>0.05) return ['spike',`${yrs[yrs.length-1]} (R${last.toFixed(1)}m) above ${yrs[yrs.length-2]} (R${prev.toFixed(1)}m)`];
-  if(early>0.1 && last<=early*0.4) return [last===0?'gap':'drop',`fell from ~R${early.toFixed(1)}m to R${last.toFixed(1)}m by ${yrs[yrs.length-1]}`];
-  return [null,null]; }
+function umaOk(u){ return !FILT.uma.size || FILT.uma.has(norm(u)); }
+function socSeries(co,yrs){ const rs=CFG.baked.recs.filter(r=>r.c===co&&umaOk(r.u)); return yrs.map(y=>rs.filter(r=>r.y===y).reduce((s,r)=>s+r.v,0)); }
+function flagOf(s,yrs){ const last=s[s.length-1],prev=s[s.length-2]||0,early=Math.max(0,...s.slice(0,-1));
+  if(prev>0&&last>=prev*1.1&&last>0.05)return['spike',`${yrs[yrs.length-1]} (R${last.toFixed(1)}m) above ${yrs[yrs.length-2]} (R${prev.toFixed(1)}m)`];
+  if(early>0.1&&last<=early*0.4)return[last===0?'gap':'drop',`fell from ~R${early.toFixed(1)}m to R${last.toFixed(1)}m by ${yrs[yrs.length-1]}`];
+  return[null,null]; }
+function totForYear(y){ const t=(CFG.baked.tot||[]).filter(r=>umaOk(r.u)&&r.y===y).reduce((s,r)=>s+r.v,0); return t; }
 function computeBaked(){
   const yrs=activeYears(); const snap=yrs[yrs.length-1], prev=yrs[yrs.length-2];
-  const recs=CFG.baked.recs.filter(r=>umaOk(r.u)), tot=CFG.baked.tot.filter(r=>umaOk(r.u));
+  const recs=CFG.baked.recs.filter(r=>umaOk(r.u));
   const sumSoC=y=>recs.filter(r=>r.y===y).reduce((s,r)=>s+r.v,0);
-  const sumTot=y=>tot.filter(r=>r.y===y).reduce((s,r)=>s+r.v,0);
-  const totSnap=sumTot(snap);
-  const uMap={}, uPrev={}; recs.filter(r=>r.y===snap).forEach(r=>uMap[r.u]=(uMap[r.u]||0)+r.v);
-  recs.filter(r=>r.y===prev).forEach(r=>uPrev[r.u]=(uPrev[r.u]||0)+r.v);
-  const byUma=Object.keys(uMap).map(u=>({k:u,v:uMap[u],prev:uPrev[u]||0})).sort((a,b)=>b.v-a.v);
-  const cMap={}; recs.filter(r=>r.y===snap).forEach(r=>cMap[r.c]=(cMap[r.c]||0)+r.v);
+  const umas=[...new Set(recs.map(r=>r.u))].sort((a,b)=>recs.filter(r=>r.u===b).reduce((s,r)=>s+r.v,0)-recs.filter(r=>r.u===a).reduce((s,r)=>s+r.v,0));
+  const byUmaYear=yrs.map(y=>({y:String(y), segs:umas.map(u=>({u,v:recs.filter(r=>r.u===u&&r.y===y).reduce((s,r)=>s+r.v,0)})).filter(s=>s.v>0)}));
+  const uPrev={}; recs.filter(r=>r.y===prev).forEach(r=>uPrev[r.u]=(uPrev[r.u]||0)+r.v);
+  const cSnap={}; recs.filter(r=>r.y===snap).forEach(r=>cSnap[r.c]=(cSnap[r.c]||0)+r.v);
   const allCos=[...new Set(recs.map(r=>r.c))];
-  const topSoc=allCos.map(c=>{const ser=socSeries(c,yrs);return{k:c,v:ser[ser.length-1],peak:Math.max(0,...ser),flag:flagOf(ser,yrs)[0]};})
-    .sort((a,b)=> b.v-a.v || b.peak-a.peak).slice(0,20);
-  const trend=yrs.map(y=>{const t=sumTot(y);return{y:String(y),v:t?100*sumSoC(y)/t:0};});
-  return {soc_gwp_m:sumSoC(snap), soc_pct: totSnap?100*sumSoC(snap)/totSnap:0,
-    n_soc:Object.values(cMap).filter(v=>v>0.0005).length, byUma, topSoc, trend, _snap:snap};
+  const topSoc=allCos.map(c=>{const ser=socSeries(c,yrs);return{k:c,v:ser[ser.length-1],peak:Math.max(0,...ser),series:ser,flag:flagOf(ser,yrs)[0]};})
+    .sort((a,b)=>b.v-a.v||b.peak-a.peak).slice(0,20);
+  const trend=yrs.map(y=>{const t=totForYear(y);return{y:String(y),v:t?100*sumSoC(y)/t:0,amt:sumSoC(y)};});
+  const totSnap=totForYear(snap);
+  return {soc_gwp_m:sumSoC(snap), soc_pct:totSnap?100*sumSoC(snap)/totSnap:0, n_soc:Object.values(cSnap).filter(v=>v>0.0005).length,
+    umas, byUmaYear, topSoc, trend, _snap:snap};
 }
-function computeMovements(){ const yrs=activeYears(); if(yrs.length<2) return [];
+function computeMovements(){ const yrs=activeYears(); if(yrs.length<2)return[];
   const cos=[...new Set(CFG.baked.recs.filter(r=>umaOk(r.u)).map(r=>r.c))]; const out=[];
-  cos.forEach(co=>{ const s=socSeries(co,yrs); const [flag,note]=flagOf(s,yrs);
-    if(flag) out.push({k:co,flag,note,mag:Math.max(...s)}); });
-  return out.sort((a,b)=>b.mag-a.mag).slice(0,12);
-}
+  cos.forEach(co=>{const s=socSeries(co,yrs);const[flag,note]=flagOf(s,yrs);if(flag)out.push({k:co,flag,note,mag:Math.max(...s)});});
+  return out.sort((a,b)=>b.mag-a.mag).slice(0,12); }
 
+/* ---- charts ---- */
+/* SoC share of GWP: bar height = % of total GWP; % on top, SoC amount below, above year */
+function shareChart(rows){ const el=$('p_share'); el.innerHTML='';
+  if(!rows||!rows.length){el.innerHTML='<div class="note-live">No data</div>';return;}
+  const max=Math.max(...rows.map(r=>r.v),0.0001);
+  const cols=rows.map((r,i)=>{const h=Math.max(4,r.v/max*104);
+    return `<div class="scol2${i===rows.length-1?' hl':''}">`+
+      `<div class="pv">${r.v.toLocaleString(undefined,{maximumFractionDigits:2})}%</div>`+
+      `<div class="bar2" style="height:${h}px"></div>`+
+      `<div class="amt">${fmtR(r.amt||0)}</div>`+
+      `<div class="yl2">${r.y}</div></div>`;
+  }).join('');
+  el.innerHTML=`<div class="sharecols">${cols}</div>`;
+}
+/* GWP by business unit x year — un-lumped matrix (rows=BU, cols=year, cell=R millions) */
+function matrixByYear(elId,data,umas){ const el=$(elId);
+  const mM=v=>v>0.0005?v.toLocaleString(undefined,{maximumFractionDigits:1}):'·';
+  const years=data.map(d=>d.y);
+  const val={}; umas.forEach(u=>val[u]={});
+  data.forEach(d=>d.segs.forEach(s=>{ if(val[s.u]===undefined)val[s.u]={}; val[s.u][d.y]=(val[s.u][d.y]||0)+s.v; }));
+  const rows=umas.filter(u=>years.some(y=>(val[u][y]||0)>0.0005));
+  if(!rows.length){el.innerHTML='<div class="note-live">No SoC GWP for this selection</div>';return;}
+  let max=0; rows.forEach(u=>years.forEach(y=>{max=Math.max(max,val[u][y]||0);}));
+  const colTot=years.map(y=>rows.reduce((s,u)=>s+(val[u][y]||0),0));
+  const head='<tr><th>Business unit <span class="mru">R m</span></th>'+years.map(y=>`<th>${y}</th>`).join('')+'<th>Total</th></tr>';
+  const body=rows.map(u=>{ const rt=years.reduce((s,y)=>s+(val[u][y]||0),0);
+    const tds=years.map(y=>{const v=val[u][y]||0;const a=max?v/max:0;
+      return `<td style="background:rgba(0,48,120,${(a*0.30).toFixed(3)})">${mM(v)}</td>`;}).join('');
+    return `<tr><td class="mu">${alias(u)}</td>${tds}<td class="mt">${mM(rt)}</td></tr>`;
+  }).join('');
+  const foot='<tr class="mtot"><td>Total</td>'+colTot.map(t=>`<td>${mM(t)}</td>`).join('')+`<td>${mM(colTot.reduce((s,t)=>s+t,0))}</td></tr>`;
+  el.innerHTML=`<table class="mx"><thead>${head}</thead><tbody>${body}${foot}</tbody></table>`;
+}
+function spark(series){ const max=Math.max(...series,0.0001);
+  return `<span class="spark">`+series.map((v,i)=>`<span class="${i===series.length-1?'last':''}" style="height:${Math.max(1,v/max*15)}px"></span>`).join('')+`</span>`; }
+function topList(rows){ const el=$('p_top');el.innerHTML='';
+  if(!rows||!rows.length){el.innerHTML='<div class="note-live">No SoCs for this selection</div>';return;}
+  rows.forEach((r,i)=>{const b=r.flag?`<span class="badge ${r.flag}">${r.flag==='spike'?'▲':r.flag==='drop'?'▼':'–'}</span>`:'';
+    const div=document.createElement('div');div.className='toprow';
+    div.innerHTML=`<span class="rk">${i+1}</span><span class="nm" title="${r.k}">${r.k}${b}</span>${spark(r.series||[r.v])}<span class="vv">${fmtR(r.v)}</span>`;el.appendChild(div);});}
+
+function yearRangeText(){ const ys=activeYears(); if(!ys.length)return '';
+  return ys[0]===ys[ys.length-1]?String(ys[0]):(ys[0]+'–'+ys[ys.length-1]); }
 function render(d){
-  $('k_fig').textContent=d.socFigureText||fmtR(d.soc_gwp_m);
-  $('k_pct').textContent=d.socPctText||(d.soc_pct!=null?d.soc_pct.toLocaleString(undefined,{maximumFractionDigits:1})+'%':'—');
-  $('k_cnt').textContent=d.socCountText||(d.n_soc!=null?d.n_soc:'—');
-  bars('p_uma',(d.byUma||[]).map(x=>({k:alias(x.k),v:x.v,prev:x.prev})),'var(--bar1)');
-  trend(d.trend); topList(d.topSoc||[]);
+  $('k_fig').textContent=fmtR(d.soc_gwp_m); $('k_fig_n').textContent=`GWP from SoCs · ${d._snap||''}`;
+  $('k_pct').textContent=d.soc_pct!=null?d.soc_pct.toLocaleString(undefined,{maximumFractionDigits:2})+'%':'—';
+  $('k_cnt').textContent=d.n_soc!=null?d.n_soc:'—';
+  shareChart(d.trend);
+  matrixByYear('p_umayear', d.byUmaYear||[], d.umas||[]);
+  topList(d.topSoc||[]);
   buildInsights(d);
+  const rng=yearRangeText(); $$('.period').forEach(e=>e.textContent=rng); $$('.fp').forEach(e=>e.textContent=rng);
   const tag=filterLabel(); $$('.tag').forEach(e=>e.textContent=tag);
 }
-function filterLabel(){const p=[];
-  if(FILT.uma.size)p.push([...FILT.uma].map(alias).join(', '));
-  if(FILT.from||FILT.to)p.push('Years '+(FILT.from||'…')+'–'+(FILT.to||'…'));
-  return p.length?('Filtered: '+p.join(' · ')):'';}
-
+function filterLabel(){const p=[]; if(FILT.uma.size)p.push([...FILT.uma].map(alias).join(', '));
+  if(FILT.from||FILT.to)p.push('Years '+(FILT.from||'…')+'–'+(FILT.to||'…')); return p.length?('Filtered: '+p.join(' · ')):'';}
 function buildInsights(d){
-  const top=(d.topSoc&&d.topSoc[0])||null, uma=(d.byUma&&d.byUma[0])||null, pct=d.soc_pct;
-  $('ins_lead').textContent=`State-owned Companies account for ${d.socPctText||((pct!=null?pct:'—')+'%')} of total industry GWP for ${CFG.period}, a ${fmtR(d.soc_gwp_m)} book across ${d.n_soc!=null?d.n_soc:'—'} distinct SoCs.`;
-  const c=[];
-  if(top)c.push(['Largest SoC',`${top.k} leads at ${fmtR(top.v)} GWP.`]);
-  if(uma)c.push(['Concentration',`${alias(uma.k)} carries the most SoC GWP among the business units (${fmtR(uma.v)}).`]);
+  const top=(d.topSoc&&d.topSoc[0])||null, uma=(d.byUmaYear&&d.byUmaYear.length?topUma(d):null), pct=d.soc_pct;
+  $('ins_lead').textContent=`State-owned Companies account for ${pct!=null?pct.toFixed(2):'—'}% of total industry GWP in ${d._snap||''}, a ${fmtR(d.soc_gwp_m)} book across ${d.n_soc!=null?d.n_soc:'—'} distinct SoCs.`;
+  const c=[]; if(top)c.push(['Largest SoC',`${top.k} leads at ${fmtR(top.v)} GWP.`]);
+  if(uma)c.push(['Concentration',`${alias(uma.u)} carries the most SoC GWP among the business units (${fmtR(uma.v)}).`]);
   if(d.trend&&d.trend.length>=2){const a=d.trend[d.trend.length-2],b=d.trend[d.trend.length-1];const dir=b.v>a.v?'up':(b.v<a.v?'down':'flat');
-    c.push(['Share trend',`SoC share moved ${dir} from ${a.v}% (${a.y}) to ${b.v}% (${b.y}).`]);}
+    c.push(['Share trend',`SoC share moved ${dir} from ${a.v.toFixed(2)}% (${a.y}) to ${b.v.toFixed(2)}% (${b.y}).`]);}
   c.push(['Read with care','2026 is year-to-date (Jan–Jul); the SoC figure is part-year, not directly comparable to full prior years.']);
   $('ins_cards').innerHTML=c.map(x=>`<div class="ins-card"><h4>${x[0]}</h4><p>${x[1]}</p></div>`).join('');
-  // movers: filter-aware, computed from baked per-SoC data for the active UMA/year selection
   const movers=computeMovements();
-  $('ins_movers').innerHTML = movers.length? movers.map(m=>
-    `<div class="mv"><span class="tag badge ${m.flag}">${m.flag==='spike'?'▲ SPIKE':m.flag==='drop'?'▼ DROP':'– GAP'}</span><b>${m.k}</b> — ${m.note}</div>`).join('')
-    : '<div style="color:var(--muted);font-size:12px">No notable year-on-year movements in the current selection.</div>';
+  $('ins_movers').innerHTML=movers.length?movers.map(m=>`<div class="mv"><span class="tag badge ${m.flag}">${m.flag==='spike'?'▲ SPIKE':m.flag==='drop'?'▼ DROP':'– GAP'}</span><b>${m.k}</b> — ${m.note}</div>`).join('')
+    :'<div style="color:var(--muted);font-size:12px">No notable year-on-year movements in the current selection.</div>';
 }
+function topUma(d){ const snap=d.byUmaYear[d.byUmaYear.length-1]; if(!snap||!snap.segs.length)return null; return snap.segs.slice().sort((a,b)=>b.v-a.v)[0]; }
 
-/* filters panel */
-function buildPanel(){
-  const box=$('f_uma');box.innerHTML='';
-  Object.keys(UMA_ALIAS).forEach(code=>{const c=document.createElement('div');c.className='chip'+(FILT.uma.has(code)?' on':'');
+/* filters */
+function buildPanel(){ const box=$('f_uma');box.innerHTML='';
+  let codes;
+  if(FEED_MODE&&CFG.baked.recs&&CFG.baked.recs.length){
+    codes=[...new Set(CFG.baked.recs.map(r=>norm(r.u)))].sort((a,b)=>alias(a).localeCompare(alias(b)));
+  } else { codes=Object.keys(UMA_ALIAS); }
+  codes.forEach(code=>{const c=document.createElement('div');c.className='chip'+(FILT.uma.has(code)?' on':'');
     c.textContent=alias(code);c.onclick=()=>{if(FILT.uma.has(code)){FILT.uma.delete(code);c.classList.remove('on');}else{FILT.uma.add(code);c.classList.add('on');}};box.appendChild(c);});
-  const ys=CFG.years||['2022','2023','2024','2025','2026'];
+  const ys=CFG.baked.years||['2022','2023','2024','2025','2026'];
   $('f_from').innerHTML=ys.map(y=>`<option>${y}</option>`).join(''); $('f_to').innerHTML=ys.map(y=>`<option>${y}</option>`).join('');
-  $('f_from').value=ys[0]; $('f_to').value=ys[ys.length-1];
-}
+  $('f_from').value=ys[0]; $('f_to').value=ys[ys.length-1]; }
 $('btnSet').onclick=()=>{$('panel').classList.add('open');$('backdrop').classList.add('open');};
 function closePanel(){$('panel').classList.remove('open');$('backdrop').classList.remove('open');}
 $('backdrop').onclick=closePanel;
-$('btnClear').onclick=()=>{FILT={uma:new Set(),from:null,to:null};$$('#f_uma .chip').forEach(c=>c.classList.remove('on'));buildPanel();applyFilters();};
-$('btnApply').onclick=()=>{FILT.from=$('f_from').value;FILT.to=$('f_to').value;applyFilters();closePanel();};
-async function applyFilters(){ if(LIVE) await applyLive(); else renderFallback(); }
-function yearRange(){ if(!FILT.from&&!FILT.to)return null; const ys=(CFG.years||[]).map(Number);
-  const a=Number(FILT.from||ys[0]),b=Number(FILT.to||ys[ys.length-1]); return ys.filter(y=>y>=Math.min(a,b)&&y<=Math.max(a,b)).map(String);}
+$('btnClear').onclick=()=>{FILT={uma:new Set(),from:null,to:null};$$('#f_uma .chip').forEach(c=>c.classList.remove('on'));buildPanel();paint();};
+$('btnApply').onclick=()=>{FILT.from=$('f_from').value;FILT.to=$('f_to').value;paint();closePanel();};
+function paint(){ render(computeBaked()); }
 
-/* live */
-let LIVE=false, DASH=null;
-function extract(sd){return{columns:sd.columns.map(c=>({name:c.fieldName,i:c.index,isMeasure:(c.dataType==='float'||c.dataType==='int')})),
-  rows:sd.data.map(r=>r.map(c=>({v:c.nativeValue,f:c.formattedValue})))};}
-const firstMeasure=ex=>ex.columns.find(c=>c.isMeasure)||ex.columns[ex.columns.length-1];
-function listFrom(ex){const dim=ex.columns.find(c=>!c.isMeasure)||ex.columns[0],mea=firstMeasure(ex);
-  return ex.rows.map(r=>({k:String(r[dim.i].v),v:Number(r[mea.i].v)})).filter(x=>x.k&&x.k!=='null');}
-async function readSheet(name){const ws=DASH.worksheets.find(w=>w.name===name);if(!ws)throw new Error('missing worksheet: '+name);
-  return extract(await ws.getSummaryDataAsync({maxRows:8000,ignoreSelection:true}));}
-
-async function applyLive(){
-  const umaVals=[...FILT.uma]; const yrs=yearRange();
-  for(const ws of DASH.worksheets){
-    try{ umaVals.length? await ws.applyFilterAsync("UMA",umaVals,"replace") : await ws.clearFilterAsync("UMA"); }catch(e){}
-    try{ yrs? await ws.applyFilterAsync("calenderyear",yrs,"replace") : await ws.clearFilterAsync("calenderyear"); }catch(e){}
-  }
-  await new Promise(r=>setTimeout(r,450)); await goLive();
-  const at=$$('.tab').find? null:null;
-  if($('pg_details').classList.contains('active'))loadDetail('details','tbl_details');
-  if($('pg_sorted').classList.contains('active'))loadDetail('sorted','tbl_sorted');
-}
+/* live read (feeder sheets) */
+const cell=c=>(c.nativeValue!==undefined&&c.nativeValue!==null)?c.nativeValue:c.value;
+async function readTable(name){ const ws=DASH.worksheets.find(w=>w.name===name); if(!ws)throw new Error('missing worksheet: '+name);
+  const sd=await ws.getSummaryDataAsync({maxRows:20000,ignoreSelection:true});
+  return {cols:sd.columns.map(c=>({name:c.fieldName,i:c.index,type:c.dataType})), rows:sd.data}; }
+function pick(cols,...keys){ return cols.find(c=>keys.some(k=>c.name.toLowerCase().includes(k))); }
+const lc=c=>String(c.name||'').toLowerCase();
+const isNum=c=>c.type==='float'||c.type==='integer'||c.type==='int';
+const isIn=v=>/^in\b/i.test(String(v==null?'':v).trim());   // set membership: "In" vs "Out"
+/* EXT_SoC_Feed: Companyname | UMA (group) | In/Out of SOC Group Set | Calenderyear | GWP_ZAR SoC | Gwp Zar */
+async function readFeed(){
+  const t=await readTable(CFG.feed), C=t.cols;
+  const cCo=C.find(c=>lc(c).includes('companyname'))||C.find(c=>lc(c).includes('company')),
+        cU =C.find(c=>lc(c).includes('uma'))||C.find(c=>lc(c).includes('business unit'))||C.find(c=>/\bbu\b/.test(lc(c))),
+        cIO=C.find(c=>lc(c).includes('in / out')||lc(c).includes('in/out')||lc(c).includes('group set')||lc(c).includes('out of soc')),
+        cSoC=C.find(c=>lc(c).includes('gwp')&&lc(c).includes('soc')),
+        cTot=C.find(c=>c!==cSoC&&(lc(c).includes('gwp')||lc(c).includes('premium'))),
+        cY =C.find(c=>lc(c).includes('calender')||lc(c).includes('calendar')||lc(c).includes('year')),
+        cV =cSoC||cTot||C.find(isNum),
+        cC =cCo||C.find(c=>c!==cU&&c!==cIO&&c!==cY&&!isNum(c));
+  const rows=t.rows.map(r=>({
+      c: cC?String(cell(r[cC.i])):'',
+      u: cU?String(cell(r[cU.i])):'ALL',
+      io:cIO?cell(r[cIO.i]):'In',
+      y: cY?Number(cell(r[cY.i])):null,
+      v: Number(cell(r[cV.i]))/1e6 }))
+    .filter(r=>r.c&&r.c.toLowerCase()!=='null'&&r.y&&!isNaN(r.v));
+  // SoC book = "In" the SOC Group Set (GWP_ZAR SoC is 0 for Out anyway); drop empties
+  const inRows=cIO?rows.filter(r=>isIn(r.io)):rows;
+  return (inRows.length?inRows:rows).filter(r=>r.v>0).map(r=>({c:r.c,u:r.u,y:r.y,v:r.v})); }
+/* EXT_Total_By_Year: UMA (group) | In/Out of SOC Group Set | Calenderyear | Gwp Zar (In+Out = whole book) */
+async function readTotals(){
+  const t=await readTable(CFG.totals), C=t.cols;
+  const cU=C.find(c=>lc(c).includes('uma'))||C.find(c=>lc(c).includes('business unit'))||C.find(c=>/\bbu\b/.test(lc(c))),
+        cY=C.find(c=>lc(c).includes('calender')||lc(c).includes('calendar')||lc(c).includes('year')),
+        cG=C.find(c=>lc(c).includes('gwp')||lc(c).includes('premium'))||C.find(isNum);
+  return t.rows.map(r=>({u:cU?String(cell(r[cU.i])):'ALL', y:cY?Number(cell(r[cY.i])):null, v:Number(cell(r[cG.i]))/1e6}))
+    .filter(r=>r.y&&!isNaN(r.v)); }
 async function goLive(){
-  const S=CFG.sheets,out={};
-  const fig=await readSheet(S.socFigure),fm=firstMeasure(fig);
-  out.socFigureText=fig.rows.length?fig.rows[0][fm.i].f:null; out.soc_gwp_m=fig.rows.length?Number(fig.rows[0][fm.i].v)/1e6:null;
-  const pct=await readSheet(S.socPct),pm=firstMeasure(pct);
-  out.socPctText=pct.rows.length?pct.rows[0][pm.i].f:null; out.soc_pct=pct.rows.length?Number(pct.rows[0][pm.i].v)*(Math.abs(pct.rows[0][pm.i].v)<=1?100:1):null;
-  const cnt=await readSheet(S.socCount),cm=firstMeasure(cnt);
-  out.socCountText=cnt.rows.length?cnt.rows[0][cm.i].f:null; out.n_soc=cnt.rows.length?Number(cnt.rows[0][cm.i].v):null;
-  out.byUma=listFrom(await readSheet(S.byUma)).map(x=>({k:x.k,v:x.v/1e6})).sort((a,b)=>b.v-a.v);
-  out.topSoc=listFrom(await readSheet(S.topSoc)).map(x=>({k:x.k,v:x.v/1e6})).sort((a,b)=>b.v-a.v).slice(0,20);
-  out.trend=listFrom(await readSheet(S.trend)).map(x=>({y:x.k,v:Math.abs(x.v)<=1?x.v*100:x.v}));
-  render(out); setStatus('live from Tableau ✓',true);
+  try{
+    const recs=await readFeed(); let tot=[]; try{tot=await readTotals();}catch(e){}
+    if(!recs.length) throw new Error('feed returned no rows');
+    CFG.baked.recs=recs; CFG.baked.tot=tot;
+    CFG.baked.years=[...new Set(recs.map(r=>r.y))].sort((a,b)=>a-b).map(String);
+    FEED_MODE=true; buildPanel(); paint(); setStatus('live from Tableau ✓',true);
+  }catch(e){
+    showDiag('Live feed not loaded — add sheets "'+CFG.feed+'" and "'+CFG.totals+'" to this dashboard. ('+e.message+')');
+    paint(); setStatus('preview — add feeder sheets for live data',false);
+  }
 }
-async function loadDetail(key,elId){
-  const el=$(elId);
-  if(!LIVE){ el.innerHTML=`<div class="note-live">Loads live inside Tableau from “${CFG.detailSheets[key]}”. (Standalone preview shows no row-level data.)</div>`; return; }
-  try{ const ex=await readSheet(CFG.detailSheets[key]);
-    const cols=ex.columns; const head='<tr>'+cols.map(c=>`<th>${c.name}</th>`).join('')+'</tr>';
-    const body=ex.rows.slice(0,400).map(r=>'<tr>'+cols.map(c=>`<td>${r[c.i].f}</td>`).join('')+'</tr>').join('');
+async function loadDetail(key,elId){ const el=$(elId); const name=CFG.detailSheets[key];
+  if(!LIVE){ el.innerHTML=`<div class="note-live">Loads live inside Tableau from “${name}”.</div>`; return; }
+  try{ const t=await readTable(name); const head='<tr>'+t.cols.map(c=>`<th>${c.name}</th>`).join('')+'</tr>';
+    const body=t.rows.slice(0,400).map(r=>'<tr>'+t.cols.map(c=>`<td>${(r[c.i].formattedValue!==undefined?r[c.i].formattedValue:cell(r[c.i]))}</td>`).join('')+'</tr>').join('');
     el.innerHTML=`<table class="dt"><thead>${head}</thead><tbody>${body}</tbody></table>`;
-  }catch(e){ el.innerHTML=`<div class="note-live">Could not load “${CFG.detailSheets[key]}”: ${e.message}</div>`; }
-}
-
-/* fallback */
-function renderFallback(){
-  render(computeBaked());
-  setStatus('preview (computed from embedded data — live values load inside Tableau)',false);
-}
+  }catch(e){ el.innerHTML=`<div class="note-live">Could not load “${name}”: ${e.message}. Add this sheet to the dashboard.</div>`; } }
 
 /* exports */
-async function snap(el){const wasActive=el.classList.contains('active'); el.classList.add('active');
-  const cv=await html2canvas(el,{scale:2,backgroundColor:'#ffffff',useCORS:true}); if(!wasActive)el.classList.remove('active'); return cv;}
+async function snap(el){ const was=el.classList.contains('active'); el.classList.add('active');
+  const cv=await html2canvas(el,{scale:2,backgroundColor:'#ffffff',useCORS:true}); if(!was)el.classList.remove('active'); return cv; }
 const PGIDS=['pg_summary','pg_details','pg_sorted','pg_insights'];
-async function exportPDF(){const {jsPDF}=window.jspdf;const pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
-  for(let i=0;i<PGIDS.length;i++){const cv=await snap($(PGIDS[i]));if(i>0)pdf.addPage();pdf.addImage(cv.toDataURL('image/png'),'PNG',0,0,297,210,undefined,'FAST');}
-  pdf.save('SoC_GWP.pdf');}
-async function exportPPT(){const p=new PptxGenJS();p.defineLayout({name:'A4L',width:11.69,height:8.27});p.layout='A4L';
-  for(const id of PGIDS){const cv=await snap($(id));const s=p.addSlide();s.addImage({data:cv.toDataURL('image/png'),x:0,y:0,w:11.69,h:8.27});}
-  p.writeFile({fileName:'SoC_GWP.pptx'});}
+async function ensureDetails(){ if(LIVE){ await loadDetail('details','tbl_details'); await loadDetail('sorted','tbl_sorted'); } }
+async function exportPDF(){ await ensureDetails(); const {jsPDF}=window.jspdf; const pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
+  const PW=297,PH=210;
+  for(let i=0;i<PGIDS.length;i++){ const cv=await snap($(PGIDS[i])); const r=Math.min(PW/cv.width,PH/cv.height),w=cv.width*r,h=cv.height*r;
+    if(i>0)pdf.addPage(); pdf.addImage(cv.toDataURL('image/png'),'PNG',(PW-w)/2,(PH-h)/2,w,h,undefined,'FAST'); }
+  pdf.save('SoC_GWP.pdf'); }
+async function exportPPT(){ await ensureDetails(); const p=new PptxGenJS(); p.defineLayout({name:'A4L',width:11.69,height:8.27}); p.layout='A4L';
+  for(const id of PGIDS){ const cv=await snap($(id)); const s=p.addSlide(); s.addImage({data:cv.toDataURL('image/png'),x:0,y:0,w:11.69,h:8.27}); }
+  const blob=await p.write({outputType:'blob'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([blob],{type:'application/vnd.openxmlformats-officedocument.presentationml.presentation'}));
+  a.download='SoC_GWP.pptx'; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500); }
 $('btnPdf').onclick=()=>exportPDF().catch(e=>showDiag('PDF export failed: '+e.message));
 $('btnPpt').onclick=()=>exportPPT().catch(e=>showDiag('PowerPoint export failed: '+e.message));
 
 /* boot */
-(function boot(){
-  buildPanel();
+(function boot(){ buildPanel();
   const hasTab=(typeof tableau!=='undefined'&&tableau.extensions);
-  if(!hasTab){renderFallback();return;}
-  tableau.extensions.initializeAsync().then(async()=>{
-    LIVE=true; DASH=tableau.extensions.dashboardContent.dashboard;
-    try{ await goLive(); }catch(e){ showDiag('Live read failed — showing preview. '+e.message); LIVE=false; renderFallback(); }
-  }).catch(e=>{ showDiag('Init failed — showing preview. '+e.message); renderFallback(); });
+  if(!hasTab){ paint(); setStatus('preview (sample data — live loads inside Tableau)',false); return; }
+  tableau.extensions.initializeAsync().then(async()=>{ LIVE=true; DASH=tableau.extensions.dashboardContent.dashboard; await goLive(); })
+    .catch(e=>{ showDiag('Init failed — showing preview. '+e.message); paint(); });
 })();
 </script>
 </body>
