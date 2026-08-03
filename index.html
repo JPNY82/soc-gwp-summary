@@ -169,25 +169,7 @@
   <footer class="foot"><span>Source: SoEs Industry GWPs · Santam Specialist Business</span><span class="fp">2026 YTD (Jan–Jul)</span></footer>
 </section>
 
-<!-- DETAILS -->
-<section class="page" id="pg_details">
-  <header class="head"><img class="logo" alt="Santam Specialist"/>
-    <div class="t"><h1>SoC GWP — Details</h1><svg class="titlecurve" viewBox="0 0 240 12" preserveAspectRatio="none"><path d="M3 8 Q 120 -3 237 6" fill="none" stroke="#F0C018" stroke-width="4" stroke-linecap="round"/></svg>
-      <div class="sub">Line-item SoC detail<span class="filttag tag"></span></div></div><div class="period">2026 YTD</div></header>
-  <div class="brandbar"></div>
-  <div class="tablewrap" id="tbl_details"><div class="note-live">Loads live inside Tableau from “SoCs Details (3)”.</div></div>
-  <footer class="foot"><span>Santam Specialist Business · SoEs Industry GWPs</span><span class="fp"></span></footer>
-</section>
-
-<!-- DETAILS SORTED -->
-<section class="page" id="pg_sorted">
-  <header class="head"><img class="logo" alt="Santam Specialist"/>
-    <div class="t"><h1>SoC GWP — Details (sorted)</h1><svg class="titlecurve" viewBox="0 0 240 12" preserveAspectRatio="none"><path d="M3 8 Q 120 -3 237 6" fill="none" stroke="#F0C018" stroke-width="4" stroke-linecap="round"/></svg>
-      <div class="sub">Line-item SoC detail, sorted<span class="filttag tag"></span></div></div><div class="period">2026 YTD</div></header>
-  <div class="brandbar"></div>
-  <div class="tablewrap" id="tbl_sorted"><div class="note-live">Loads live inside Tableau from “SoCs Details with sorting (2)”.</div></div>
-  <footer class="foot"><span>Santam Specialist Business · SoEs Industry GWPs</span><span class="fp"></span></footer>
-</section>
+<!-- (Details / Details-sorted tabs removed per request) -->
 
 <!-- INSIGHTS -->
 <section class="page insights" id="pg_insights">
@@ -222,12 +204,10 @@ function setStatus(t,live){$('status').textContent=t;$('status').style.color=liv
 function showDiag(m){const d=$('diag');d.style.display='block';d.textContent=m;}
 
 /* tabs */
-const PAGES=[['Summary','pg_summary'],['Details','pg_details'],['Details (sorted)','pg_sorted'],['Insights','pg_insights']];
+const PAGES=[['Summary','pg_summary'],['Insights','pg_insights']];
 $('tabs').innerHTML=PAGES.map((p,i)=>`<div class="tab${i==0?' active':''}" data-pg="${p[1]}">${p[0]}</div>`).join('');
 $$('.tab').forEach(t=>t.onclick=()=>{ $$('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
-  $$('.page').forEach(pg=>pg.classList.remove('active'));$(t.dataset.pg).classList.add('active');
-  if(t.dataset.pg==='pg_details')loadDetail('details','tbl_details');
-  if(t.dataset.pg==='pg_sorted')loadDetail('sorted','tbl_sorted'); });
+  $$('.page').forEach(pg=>pg.classList.remove('active'));$(t.dataset.pg).classList.add('active'); });
 
 /* ---- analytics from recs (baked=sample, or live feed) ---- */
 function activeYears(){ const ys=(CFG.baked.years||[]).map(Number);
@@ -257,9 +237,16 @@ function computeBaked(){
     umas, byUmaYear, topSoc, trend, _snap:snap};
 }
 function computeMovements(){ const yrs=activeYears(); if(yrs.length<2)return[];
-  const cos=[...new Set(CFG.baked.recs.filter(r=>umaOk(r.u)).map(r=>r.c))]; const out=[];
-  cos.forEach(co=>{const s=socSeries(co,yrs);const[flag,note]=flagOf(s,yrs);if(flag)out.push({k:co,flag,note,mag:Math.max(...s)});});
-  return out.sort((a,b)=>b.mag-a.mag).slice(0,12); }
+  const yA=yrs[yrs.length-2], yB=yrs[yrs.length-1];
+  const cos=[...new Set(CFG.baked.recs.filter(r=>umaOk(r.u)).map(r=>r.c))];
+  const rows=cos.map(co=>{const s=socSeries(co,yrs);const prev=s[s.length-2]||0,last=s[s.length-1]||0;
+    return {k:co,s,prev,last,delta:last-prev,mag:Math.max(...s)};}).filter(r=>r.mag>0.0005);
+  // biggest year-on-year movers by absolute change (works at any data scale)
+  return rows.filter(r=>Math.abs(r.delta)>0.0005)
+    .sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta)).slice(0,12)
+    .map(r=>({k:r.k, flag:r.delta>=0?'spike':'drop',
+      note:`${yA} ${fmtR(r.prev)} → ${yB} ${fmtR(r.last)} (${r.delta>=0?'+':'−'}${fmtR(Math.abs(r.delta)).replace('R ','R ')})`,
+      mag:Math.abs(r.delta)})); }
 
 /* ---- charts ---- */
 /* SoC share of GWP: bar height = % of total GWP; % on top, SoC amount below, above year */
@@ -327,8 +314,8 @@ function buildInsights(d){
   c.push(['Read with care','2026 is year-to-date (Jan–Jul); the SoC figure is part-year, not directly comparable to full prior years.']);
   $('ins_cards').innerHTML=c.map(x=>`<div class="ins-card"><h4>${x[0]}</h4><p>${x[1]}</p></div>`).join('');
   const movers=computeMovements();
-  $('ins_movers').innerHTML=movers.length?movers.map(m=>`<div class="mv"><span class="tag badge ${m.flag}">${m.flag==='spike'?'▲ SPIKE':m.flag==='drop'?'▼ DROP':'– GAP'}</span><b>${m.k}</b> — ${m.note}</div>`).join('')
-    :'<div style="color:var(--muted);font-size:12px">No notable year-on-year movements in the current selection.</div>';
+  $('ins_movers').innerHTML=movers.length?movers.map(m=>`<div class="mv"><span class="tag badge ${m.flag}">${m.flag==='spike'?'▲ UP':'▼ DOWN'}</span><b>${m.k}</b> — ${m.note}</div>`).join('')
+    :'<div style="color:var(--muted);font-size:12px">No year-on-year movements in the current selection.</div>';
 }
 function topUma(d){ const snap=d.byUmaYear[d.byUmaYear.length-1]; if(!snap||!snap.segs.length)return null; return snap.segs.slice().sort((a,b)=>b.v-a.v)[0]; }
 
@@ -410,8 +397,8 @@ async function loadDetail(key,elId){ const el=$(elId); const name=CFG.detailShee
 /* exports */
 async function snap(el){ const was=el.classList.contains('active'); el.classList.add('active');
   const cv=await html2canvas(el,{scale:2,backgroundColor:'#ffffff',useCORS:true}); if(!was)el.classList.remove('active'); return cv; }
-const PGIDS=['pg_summary','pg_details','pg_sorted','pg_insights'];
-async function ensureDetails(){ if(LIVE){ await loadDetail('details','tbl_details'); await loadDetail('sorted','tbl_sorted'); } }
+const PGIDS=['pg_summary','pg_insights'];
+async function ensureDetails(){ /* details tabs removed */ }
 async function exportPDF(){ await ensureDetails(); const {jsPDF}=window.jspdf; const pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
   const PW=297,PH=210;
   for(let i=0;i<PGIDS.length;i++){ const cv=await snap($(PGIDS[i])); const r=Math.min(PW/cv.width,PH/cv.height),w=cv.width*r,h=cv.height*r;
